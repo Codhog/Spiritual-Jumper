@@ -4,7 +4,7 @@
         <field id="tpd3" name="Name" width="479" order="0"/>
         <field id="tpd4" name="Begin date" width="354" order="1"/>
         <field id="tpd5" name="End date" width="354" order="2"/>
-        <timeline><![CDATA[19,2]]></timeline>
+        <timeline><![CDATA[2,19]]></timeline>
     </view>
     <view id="resource-table">
         <field id="0" name="Name" width="210" order="0"/>
@@ -36,6 +36,7 @@
         </taskproperties>
         <task id="1" name="Team Formation" color="#8cb6ce" meeting="false" start="2017-09-13" duration="1" complete="0" expand="true">
             <depend id="2" type="2" difference="0" hardness="Strong"/>
+            <depend id="137" type="2" difference="0" hardness="Strong"/>
         </task>
         <task id="2" name="Project Approval Document" color="#8cb6ce" meeting="false" start="2017-09-14" duration="5" complete="0" expand="true">
             <depend id="6" type="2" difference="0" hardness="Strong"/>
@@ -65,7 +66,7 @@
             <task id="160" name="Documenting Modifications" color="#8cb6ce" meeting="false" start="2017-10-09" duration="8" complete="0" expand="true"/>
             <task id="161" name="Demonstration" color="#8cb6ce" meeting="false" start="2017-10-09" duration="8" complete="0" expand="true"/>
         </task>
-        <task id="19" name="Test Plan Revision 0" color="#8cb6ce" meeting="false" start="2017-10-19" duration="7" complete="0" expand="true">
+        <task id="19" name="Test Plan Revision 0" color="#8cb6ce" meeting="false" start="2017-10-19" duration="7" complete="0" expand="false">
             <depend id="21" type="2" difference="0" hardness="Strong"/>
             <depend id="23" type="2" difference="0" hardness="Strong"/>
             <task id="162" name="Latex Document - General Information" color="#8cb6ce" meeting="false" start="2017-10-19" duration="7" complete="0" expand="true"/>
@@ -100,7 +101,6 @@
         <allocation task-id="21" resource-id="0" function="Default:0" responsible="false" load="66.0"/>
         <allocation task-id="97" resource-id="0" function="Default:0" responsible="false" load="33.0"/>
         <allocation task-id="125" resource-id="0" function="Default:0" responsible="true" load="50.0"/>
-        <allocation task-id="133" resource-id="0" function="Default:0" responsible="true" load="50.0"/>
         <allocation task-id="150" resource-id="0" function="Default:0" responsible="false" load="100.0"/>
         <allocation task-id="159" resource-id="0" function="Default:0" responsible="true" load="33.0"/>
         <allocation task-id="160" resource-id="0" function="Default:0" responsible="true" load="33.0"/>
@@ -108,6 +108,7 @@
         <allocation task-id="162" resource-id="0" function="Default:0" responsible="true" load="33.0"/>
         <allocation task-id="163" resource-id="0" function="Default:0" responsible="true" load="33.0"/>
         <allocation task-id="164" resource-id="0" function="Default:0" responsible="true" load="33.0"/>
+        <allocation task-id="137" resource-id="0" function="Default:0" responsible="true" load="50.0"/>
         <allocation task-id="1" resource-id="1" function="Default:0" responsible="false" load="100.0"/>
         <allocation task-id="2" resource-id="1" function="Default:0" responsible="false" load="100.0"/>
         <allocation task-id="32" resource-id="1" function="Default:0" responsible="false" load="100.0"/>
@@ -115,12 +116,12 @@
         <allocation task-id="23" resource-id="1" function="Default:0" responsible="false" load="33.0"/>
         <allocation task-id="21" resource-id="1" function="Default:0" responsible="false" load="66.0"/>
         <allocation task-id="97" resource-id="1" function="Default:0" responsible="false" load="33.0"/>
-        <allocation task-id="137" resource-id="1" function="Default:0" responsible="true" load="100.0"/>
         <allocation task-id="152" resource-id="1" function="Default:0" responsible="false" load="100.0"/>
         <allocation task-id="159" resource-id="1" function="Default:0" responsible="false" load="50.0"/>
         <allocation task-id="161" resource-id="1" function="Default:0" responsible="true" load="50.0"/>
         <allocation task-id="165" resource-id="1" function="Default:0" responsible="true" load="50.0"/>
         <allocation task-id="166" resource-id="1" function="Default:0" responsible="true" load="50.0"/>
+        <allocation task-id="133" resource-id="1" function="Default:0" responsible="true" load="100.0"/>
         <allocation task-id="1" resource-id="2" function="Default:0" responsible="false" load="100.0"/>
         <allocation task-id="2" resource-id="2" function="Default:0" responsible="false" load="100.0"/>
         <allocation task-id="32" resource-id="2" function="Default:0" responsible="false" load="100.0"/>
@@ -128,12 +129,13 @@
         <allocation task-id="23" resource-id="2" function="Default:0" responsible="false" load="33.0"/>
         <allocation task-id="21" resource-id="2" function="Default:0" responsible="false" load="66.0"/>
         <allocation task-id="97" resource-id="2" function="Default:0" responsible="false" load="33.0"/>
-        <allocation task-id="139" resource-id="2" function="Default:0" responsible="true" load="100.0"/>
         <allocation task-id="154" resource-id="2" function="Default:0" responsible="false" load="100.0"/>
         <allocation task-id="159" resource-id="2" function="Default:0" responsible="false" load="50.0"/>
         <allocation task-id="161" resource-id="2" function="Default:0" responsible="false" load="50.0"/>
         <allocation task-id="167" resource-id="2" function="Default:0" responsible="true" load="50.0"/>
         <allocation task-id="170" resource-id="2" function="Default:0" responsible="true" load="50.0"/>
+        <allocation task-id="139" resource-id="2" function="Default:0" responsible="true" load="90.0"/>
+        <allocation task-id="168" resource-id="2" function="Default:0" responsible="true" load="10.0"/>
     </allocations>
     <vacations/>
     <previous/>

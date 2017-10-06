@@ -1,0 +1,262 @@
+\documentclass[12pt, titlepage]{article}
+
+\usepackage{booktabs}
+\usepackage{tabularx}
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks,
+    citecolor=black,
+    filecolor=black,
+    linkcolor=red,
+    urlcolor=blue
+}
+\usepackage[round]{natbib}
+
+\title{SE 3XA3: Software Requirements Specification\\Spiritual Jumper}
+
+\author{Team 25, N.L.E (Next Level Engineering)
+		\\ Ruoyuan Liu, liur19
+		\\ Zihao Chen, chenz87
+		\\ Gundeep Kanwal, kanwalg
+}
+
+\date{\today}
+
+
+\begin{document}
+
+\maketitle
+
+\pagenumbering{roman}
+\tableofcontents
+\listoftables
+\listoffigures
+
+\begin{table}[bp]
+\caption{\bf Revision History}
+\begin{tabularx}{\textwidth}{p{3cm}p{2cm}X}
+\toprule {\bf Date} & {\bf Version} & {\bf Notes}\\
+\midrule
+October 6, 2017 & 0.0 & Draft of requirement document\\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\newpage
+
+\pagenumbering{arabic}
+
+This document describes the requirements for our implementation of the popular internet game "Doodle Jump". The template for the Software
+Requirements Specification (SRS) is a subset of the Volere
+template~\citep{RobertsonAndRobertson2012}.
+
+\section{Project Drivers}
+
+\subsection{The Purpose of the Project}
+
+The purpose of our project, to state it simply, is for all of our users to have fun. It is our top priority is to be able to modify Doodle Jump to make it more enjoyable to maximize the amount of people who will have the capability to play the game. It is at the best interests of N.L.E to ensure that the Spiritual Jumper can be accessible and enjoyable to as many people as possible. This includes people who have physical and/or mental disabilities as the group strongly believes that it is important that anyone can be able to enjoy games. Therefore it is key that the game is simple and very easy to play.
+
+\subsection{The Stakeholders}
+
+\subsubsection{The Client}
+
+The client for this product is the instructor for the course SE3XA3, Doctor Asghar A. Bokhari of McMaster University, and our TA, Glenne Grossman.
+
+\subsubsection{The Customers}
+
+In terms of customers, due to the nature of the purpose of the product, N.L.E is not targeting a specific audience with Spiritual Jumper. Rather the approach the group is undertaking is trying to cast as wide of a net as possible in order maximize the amount of people who will be able to play the game. We hope to have a very diverse customer base, with people ranging from young children to seniors enjoying the product. However, realistically we understand that people who are more interested in gaming tend to be younger. Despite this we still look forward to creating a game which anyone can enjoy. 
+
+\subsubsection{Other Stakeholders}
+
+McMaster University is also a stakeholder with this project, as a successful implementation of the product with real world success is something that would benefit the University, more specifically the software program, as it would be an example of the successes of the program and the course. 
+
+The members of N.L.E would also be a stakeholder in this project, as it's success or failure has a significant impact with how well they do in the course. 
+
+\subsection{Mandated Constraints}
+
+With regards to the mandated constraints relative to the project timetable, there are a number of deadlines that the team must meet as specified by the course outline. The initial, prototype, and final demonstrations must be completed during the weeks of October 16, November 13 and November 27, respectfully. The initial design document must be finished by November 10, while the initial test plans must be completed by October 27. The final documentation of the project must be completed by December 6th. 
+
+In terms of mandated constrains relative to the project itself, the final product must be easily accessible by anyone with a computer that can run Java. It also must be different from the source game to a point acceptable by the requirements of the course. Spiritual jumper must also be easy to play, an entertaining.
+
+\subsection{Naming Conventions and Terminology}
+
+Spiritual Jumper - The name of the game the group is going to create.
+
+N.L.E - Stands for Next Level Engineering, the name of the group.
+
+Doodle Jump - The name of the game which the group is using as a source.
+
+Client - The people who the group is directly making the game for, and will review the product and provide immediate feedback. In this case it would be our TA and Proffesor. 
+
+Customer - Like the client, the people who the group is intending to make the game for, after it reaches a point where it can be presentable to a significant amount of people. In our case that would be the general population.
+
+\subsection{Relevant Facts and Assumptions}
+
+There are over 1800 lines of code within the original source code that the group is creating Spiritual Jumper from. On top of that, there are many different images within the project. Due to this, it is a fair assumption that the code for the groups final product will have 2000+ lines of code with possible additions to the images in order to make the our product more discernible from the original. 
+
+N.L.E is also assuming that the majority of people will be able to play the game through the use of java.
+
+\section{Functional Requirements}
+
+\subsection{The Scope of the Work and the Product}
+The N.L.E team is aiming to create a game that can be run on multiple environment with simple but addicting gameplay style interest all age group of people.
+\subsubsection{The Context of the Work}
+We are revising the popular mobile game "Doodle Jump" by adding Space  genre and more challenging elements to make the game even more addicting.
+
+\subsubsection{Work Partitioning}
+All 3 members shared evenly role in software development and game logic as programmers. Ruoyuan provides test methods, Gundeep makes charts, Zihao makes documents.
+
+\subsubsection{Individual Product Use Cases}
+If the player start the game, the character will be ready to go at the starting point, waiting for player's further action.
+If the player character collide with enemy, "Game Over" will pop up.
+If the player reach a new high score, "Congratulation" will pop up,
+If the device disconnect from the internet, the game will go on.
+
+
+\subsection{Functional Requirements}
+1: The game can determine the score of player by how much they move up.
+2: The score will be automatically saved if it is top 10 score, all score will be saved if the game on the device is played less than 11 times.
+3: The game can terminate itself when player's character collide with obstacles.
+4; The items in the game will take effect and help players, for examples, the spring will bounce player 7 times higher than the regular bounce;  the rocket pack can boost player up and move horizontally swiftly for a period of time.
+
+\section{Non-Functional Requirements}
+
+\subsection{Look and Feel Requirements}
+Requirement \#: NFR1\\
+Description:The new GUI of Spiritual Jumper should be similar to the old game, with minor changes to graphic style.\\ However, the changes should not affect the simplicity or the functionality of the UI.\\
+Rationale:It would create a more comfort environment for people who played the original version before.\\
+Fit Criterion: Locations of parts of the new UI should be identical to the original one.\\
+Priority: Low\\
+History: Oct 6th, 2017\\
+
+\subsection{Usability and Humanity Requirements}
+
+Requirement \#: NFR2\\
+Description: The controlling of the character in this game should be smooth and easy to learn.\\
+Rationale:It would make game easier for beginner users and prevent user from early frustration of uncomfortable control but enjoy the game earlier.\\
+Fit Criterion:A simple tutorial may be needed and new users should get used to control quickly.\\
+Priority: High\\
+History: Oct 6th, 2017\\\\
+
+\subsection{Performance Requirements}
+Requirement \#: NFR3\\
+Description: The game should be able to response to the input of user effectively.\\
+Rationale:It would make more people gain easy access to the game.\\
+Fit Criterion:Game should avoid bugs and should be crash-free during testing.\\
+Priority: High\\
+History: Oct 6th, 2017\\
+
+\subsection{Operational and Environmental Requirements}
+Requirement \#: NFR4\\
+Description: The installation, execution and environment required to run should be easy to understand and should be doable for people who are lack of knowledge about software.\\
+Rationale:It would make more people gain easy access to the game.\\
+Fit Criterion:Game should be able to install and run in several clicks and have guide throughout the process\\
+Priority: Low\\
+History: Oct 6th, 2017\\
+
+\subsection{Maintainability and Support Requirements}
+Requirement \#: NFR5\\
+Description: New patches, bug fixes and update should be easy to push to the users.\\
+Rationale:The N.L.E team can provide users with better gaming experiences after first launch of the game.\\
+Fit Criterion:New version of the game should be pushed to users easily through internet.\\
+Priority: Low\\
+History: Oct 6th, 2017\\
+
+\subsection{Security Requirements}
+Requirement \#: NFR6\\
+Description:The program should not, in any circumstances, try to compromise the privacy of users.\\
+Rationale:The N.L.E team, has no intention involving in any legal cases due to privacy.\\
+Fit Criterion:User privacy is not affected when the user playing the game.\\
+Priority: Medium\\
+History: Oct 6th, 2017\\
+\subsection{Cultural Requirements}
+Requirement \#: NFR7\\
+Description: The content of this game should prevent from political issues or any kind of discrimination to any kinds of people\\
+Rationale:The N.L.E team, has no intention involving in any arguments with the game content.\\
+Fit Criterion:Basic political correctness achieved.\\
+Priority: High\\
+History: Oct 6th, 2017\\
+\subsection{Legal Requirements}
+Requirement \#: NFR8\\
+Description: The game should not violate any law in the countries or areas where the game service is provided\\
+Rationale:The N.L.E team, has no intention getting involved in any legal conflict\\
+Fit Criterion:The final version of the game is not violating any law.\\
+Priority: High\\
+History: Oct 6th, 2017\\
+\subsection{Health and Safety Requirements}
+Requirement \#: NFR9\\
+Description: Harmful or uncomfortable graphics or context should not be in the content of this game.\\
+Rationale:The N.L.E team, have no intention in harming users health or put users safety in danger.\\
+Fit Criterion: No content would have bad impact on users physically or mentally.\\
+Priority: High\\
+History: Oct 6th, 2017\\
+
+
+\section{Project Issues}
+
+\subsection{Open Issues}
+
+Within the original source code of the project, there is absolutely no documentation within it. It is key for all group members to go over all segments of the code in order to ensure that they understand the program due to that. More specifically, it is very important that the group members understand how to use Java Swing, as it is instrumental with the original source code as it was used as the GUI. 
+
+The original project also includes many image files, many of which may need to be modified in order to create Spiritual Jumper. Due to this the group members must know how to modify these files successfully.
+
+\subsection{Off-the-Shelf Solutions}
+
+N.L.E is using various off-the-shelf solutions. These include : 
+
+\begin{itemize}
+  \item Sharelatex will be used for the groups documents.
+  \item Eclipse will be used to host and modify the original java source code into the final product.
+  \item Doxygen will be used to generate the documentation of the code.
+  \item Various java libraries like Java Swing is being used in order to run the program.
+  \item Gitlab will be used for version control.
+\end{itemize}
+
+\subsection{New Problems}
+
+A problem that the group really wants to avoid might occur when there are customers who do wish to play the product, but the software that they do have does not allow them to play the game, or it does allow them to play the game but it does not run well. Another would be how the game could be distracting, and could have a negative impact on productivity if people are playing the game whenever they are bored at work, or when they should be learning something at school. 
+
+
+\subsection{Tasks}
+
+The course outline highlights all the tasks along with their deadlines, and have been mentioned within section 1.3 of this document. Tasks include test, design, development documents, various demonstrations, and completing the actual software along with its documentation. 
+
+\subsection{Migration to the New Product}
+
+As the project continues to develop over time, all the tasks will be submitted to the gitlab repository with appropriate tags. As the group completes the tasks, the gantt chart will also be updated to visualize the progress of the project. Additionally the changes with to the source code will also be saved within our teams gitlab repository. 
+
+\subsection{Risks}
+
+Throughout this project there are various risks involved. A very significant risk comes with using a source code with no documentation. Due to this it takes out time that the group members could use productively, when we will have to use just to understand the code adequately. Furthermore this could add confusion between what the original developers had in mind when it comes to parts of the code, compared to what we inferred the code to mean. This creates a potential for misunderstanding which may cause problems in the future during our development. Another risk would be that the end product might not be entertaining enough to captivate people to play the game, as it will be difficult to judge how people would react to the final product. 
+
+\subsection{Costs}
+
+In terms of cost, no group members will be paying anything out of pocket for anything as N.L.E is not using any licenses which require to be bought. The only cost that the group members will be using is their time. To ensure that time isn't wasted, all meetings will be planned before hand to ensure they are effective and that they are productive. The final product will be free to play, in order to stick to the main purpose of the game to maximize the amount of people who would want to play the game.
+
+\subsection{User Documentation and Training}
+
+A README file will be included within the gitlab repository, explaining how the game is to be played, along with in game guidelines which had existed in the original version. By keeping to our groups purpose, we aim to have the game be very simple so there will be a very limited need for training. 
+
+\subsection{Waiting Room}
+
+Ideas in the waiting room include creating a version of Spiritual Jumper which can work in more ways than just Java, and creating complex mechanisms to make it very easy for people with a wide variety of disabilities to play and enjoy the game. An idea which may be closer in reach to the groups abilities would be to have the user input their own face, or any image, to represent themselves as an avatar to play as in the game.
+
+\subsection{Ideas for Solutions}
+
+In order to make the game more accessible to people who don't have internet access, the game should be able to be played offline. An idea to make the game more competitive and entertaining, the group could upgrade the already existing leaderboard to allow users to leave their mark on it. 
+
+\bibliographystyle{plainnat}
+
+\bibliography{SRS}
+
+\newpage
+
+\section{Appendix}
+
+To be updated if neccessary.
+
+\subsection{Symbolic Parameters}
+No symbolic parameters used in this document
+
+\end{document}
+

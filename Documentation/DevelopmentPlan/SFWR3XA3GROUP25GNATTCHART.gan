@@ -4,7 +4,7 @@
         <field id="tpd3" name="Name" width="479" order="0"/>
         <field id="tpd4" name="Begin date" width="354" order="1"/>
         <field id="tpd5" name="End date" width="354" order="2"/>
-        <timeline><![CDATA[2,19]]></timeline>
+        <timeline><![CDATA[2,12,19]]></timeline>
     </view>
     <view id="resource-table">
         <field id="0" name="Name" width="210" order="0"/>
@@ -34,31 +34,31 @@
             <taskproperty id="tpd8" name="coordinator" type="default" valuetype="text"/>
             <taskproperty id="tpd9" name="predecessorsr" type="default" valuetype="text"/>
         </taskproperties>
-        <task id="1" name="Team Formation" color="#8cb6ce" meeting="false" start="2017-09-13" duration="1" complete="0" expand="true">
+        <task id="1" name="Team Formation" color="#8cb6ce" meeting="false" start="2017-09-13" duration="1" complete="100" expand="true">
             <depend id="2" type="2" difference="0" hardness="Strong"/>
             <depend id="137" type="2" difference="0" hardness="Strong"/>
         </task>
-        <task id="2" name="Project Approval Document" color="#8cb6ce" meeting="false" start="2017-09-14" duration="5" complete="0" expand="true">
+        <task id="2" name="Project Approval Document" color="#8cb6ce" meeting="false" start="2017-09-14" duration="5" complete="100" expand="true">
             <depend id="6" type="2" difference="0" hardness="Strong"/>
         </task>
-        <task id="6" name="Problem Statement" color="#8cb6ce" meeting="false" start="2017-09-21" duration="2" complete="0" expand="true">
+        <task id="6" name="Problem Statement" color="#8cb6ce" meeting="false" start="2017-09-21" duration="2" complete="0" expand="false">
             <depend id="12" type="2" difference="0" hardness="Strong"/>
             <task id="150" name="Latex Document - What problem are you trying to solve?" color="#8cb6ce" meeting="false" start="2017-09-21" duration="2" complete="0" expand="true"/>
             <task id="152" name="Latex Document - Why is this an important problem?" color="#8cb6ce" meeting="false" start="2017-09-21" duration="2" complete="0" expand="true"/>
             <task id="154" name="Latex Document - What is the context of the problem you are solving?" color="#8cb6ce" meeting="false" start="2017-09-21" duration="2" complete="0" expand="true"/>
         </task>
-        <task id="12" name="Development Plan" color="#8cb6ce" meeting="false" start="2017-09-25" duration="5" complete="0" expand="true">
+        <task id="12" name="Development Plan" color="#8cb6ce" meeting="false" start="2017-09-25" duration="5" complete="100" expand="false">
             <depend id="39" type="2" difference="0" hardness="Strong"/>
-            <task id="32" name="Latex Document" color="#8cb6ce" meeting="false" start="2017-09-25" duration="5" complete="0" expand="true"/>
-            <task id="35" name="Gantt Chart" color="#8cb6ce" meeting="false" start="2017-09-25" duration="5" complete="0" expand="true"/>
+            <task id="32" name="Latex Document" color="#8cb6ce" meeting="false" start="2017-09-25" duration="5" complete="100" expand="true"/>
+            <task id="35" name="Gantt Chart" color="#8cb6ce" meeting="false" start="2017-09-25" duration="5" complete="100" expand="true"/>
         </task>
-        <task id="39" name="Requirments Document Revision 0" color="#8cb6ce" meeting="false" start="2017-10-02" duration="5" complete="0" expand="true">
+        <task id="39" name="Requirments Document Revision 0" color="#8cb6ce" meeting="false" start="2017-10-02" duration="5" complete="100" expand="false">
             <depend id="145" type="2" difference="0" hardness="Strong"/>
-            <task id="125" name="Latex Document - Project Drivers" color="#8cb6ce" meeting="false" start="2017-10-02" duration="5" complete="0" expand="true"/>
-            <task id="133" name="Latex Document - Functional Requirements" color="#8cb6ce" meeting="false" start="2017-10-02" duration="5" complete="0" expand="true"/>
-            <task id="137" name="Latex Document - Project Issues" color="#8cb6ce" meeting="false" start="2017-10-02" duration="5" complete="0" expand="true"/>
-            <task id="139" name="Latex Document - Non-Functional Requirements" color="#8cb6ce" meeting="false" start="2017-10-02" duration="5" complete="0" expand="true"/>
-            <task id="168" name="Latex Document - Appendix" color="#8cb6ce" meeting="false" start="2017-10-02" duration="5" complete="0" expand="true"/>
+            <task id="125" name="Latex Document - Project Drivers" color="#8cb6ce" meeting="false" start="2017-10-02" duration="5" complete="100" expand="true"/>
+            <task id="133" name="Latex Document - Functional Requirements" color="#8cb6ce" meeting="false" start="2017-10-02" duration="5" complete="100" expand="true"/>
+            <task id="137" name="Latex Document - Project Issues" color="#8cb6ce" meeting="false" start="2017-10-02" duration="5" complete="100" expand="true"/>
+            <task id="139" name="Latex Document - Non-Functional Requirements" color="#8cb6ce" meeting="false" start="2017-10-02" duration="5" complete="100" expand="true"/>
+            <task id="168" name="Latex Document - Appendix" color="#8cb6ce" meeting="false" start="2017-10-02" duration="5" complete="100" expand="true"/>
         </task>
         <task id="145" name="Proof of Concept Demonstration" color="#000000" meeting="false" start="2017-10-09" duration="8" complete="0" expand="false">
             <depend id="19" type="2" difference="0" hardness="Strong"/>

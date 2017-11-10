@@ -11,6 +11,16 @@ import javax.sound.sampled.*;
 import java.io.*;
 import javax.swing.*;
 
+/** 
+ * @author Members of Group 25 - Gundeep Kanwal, Zihao Chen, Ruoyuan Liu
+ * @author Creator of Original Source Code - Albert Haque
+ *
+ * This class is where everything is really happening, and all the parts of the code are tied together in order to create a functioning game.
+ * The GameShell class when is where the game is played after it is ran, it contains all sorts of methods which open the display of the game, handles
+ * all the various images used within the game, handles the occurrences within the game and it also plays a vital role in ending the game and
+ * saving and maintain the scoreboard. The class extends Applet and implements KeyListener, MouseListener, MouseMotionListener and Runnable. These
+ * are all used to help create and maintain the game.
+ */
 public class GameShell extends Applet implements KeyListener, MouseListener, MouseMotionListener, Runnable {
     // #### MASTER SETTINGS #########################
     // DOODLE BOUNCE VELOCITY (SMALLER (negative) number for higher jumps)
@@ -67,9 +77,15 @@ public class GameShell extends Applet implements KeyListener, MouseListener, Mou
 
     // called by Applet before beginning - 
     // give all attributes starting values here.
+    /**
+     * This method is where the game is initialized. The score is reset to 0 to ensure that the scoreboard is reliable.
+     * The method is also used to structure the various sounds and images that are to be used within the game, it where these items are set
+     * to variables to be used later on. The display is also created within this method. The doodle, along with the other various Characters are also
+     * initialized and created within this method. In other words, this method is the staging ground for the game. 
+     */
     public void init() {
-        ac = getAudioClip(getDocumentBase(), "sounds/mystery.wav");
-        acFall = getAudioClip(getDocumentBase(), "sounds/fall.wav");
+        acFall = getAudioClip(getDocumentBase(), "sounds/pl.wav");
+        ac= getAudioClip(getDocumentBase(), "sounds/fall.wav");
 
         score = 0;
 
@@ -192,6 +208,11 @@ public class GameShell extends Applet implements KeyListener, MouseListener, Mou
         myPlatforms.add(new Platform(1, xp, 500, 58, 15));
     }
 
+    /**
+     * This method is used to generate a random Platform object at a random position.
+     * 
+     * @return A randomly placed Platform object is created.
+     */
     public Platform randomPlatform() {
         int yp = (int) (Math.random() * 450);
         int xp = (int) (Math.random() * 400);
@@ -200,11 +221,18 @@ public class GameShell extends Applet implements KeyListener, MouseListener, Mou
         return plat1;
     }
 
+    /**
+     * This method dictates the start of the game.
+     */
     public void start() {
         gameloop = new Thread(this);
         gameloop.start();
     }
 
+    /**
+     * This method ensures the game continues to run as long as the game should be running, or in other words, as long as the thread is alive.
+     * This method also modifies the speed of the game as the game progresses. 
+     */
     public void run() {
         // keep going as long as the thread is alive
         while (!gameOver2) {
@@ -218,6 +246,12 @@ public class GameShell extends Applet implements KeyListener, MouseListener, Mou
         }
     }
 
+    /**
+     * This method is used to manage the horizontally moving platforms. It dictates the creation and deletion of that type of platform.
+     * 
+     * @param k - This parameter is used to set a Platform object of the second platform type to a position k.
+     * @param plat - This parameter is used to represent a Platform object. 
+     */
     public void updatePlat2(int k, Character plat) {
         // manages horizontal moving platforms
         Platform tempPlat2 = (Platform) plat;
@@ -245,6 +279,12 @@ public class GameShell extends Applet implements KeyListener, MouseListener, Mou
         offScreenBuffer.drawImage(myImages.get(tempPlat2.getId()), tempPlat2.getX(), tempPlat2.getY(), this);
     }
 
+    /**
+     * This method is used to manage the brown platforms. It dictates the creation and deletion of that type of platform.
+     * 
+     * @param k - This parameter is used to set a Platform object of the third platform type to a position k.
+     * @param plat - This parameter is used to represent a Platform object. 
+     */
     public void updatePlat3(int k, Character plat) {
         // manages brown platforms, continues the animation by changing images
         Platform brownPlat = (Platform) plat;
@@ -266,6 +306,12 @@ public class GameShell extends Applet implements KeyListener, MouseListener, Mou
         }
     }
 
+    /**
+     * This method is used to manage the vertically moving platforms. It dictates the creation and deletion of that type of platform.
+     * 
+     * @param k - This parameter is used to set a Platform object of the tenth platform type to a position k.
+     * @param plat - This parameter is used to represent a Platform object. 
+     */
     public void updatePlat10(int k, Character plat) {
         // manages vertical moving platforms
         Platform tempPlat10 = (Platform) plat;
@@ -300,6 +346,12 @@ public class GameShell extends Applet implements KeyListener, MouseListener, Mou
         offScreenBuffer.drawImage(myImages.get(tempPlat10.getId()), tempPlat10.getX(), tempPlat10.getY(), this);
     }
 
+    /**
+     * This method is used to manage the Monsters within the game. It dictates their creation and destruction.
+     * 
+     * @param w - This parameter represents an index value which the Monster object is set to.
+     * @param mon - This parameter represents a Monster object. 
+     */
     public void updateMonster(int w, Character mon) {
         Monster tempMonster = (Monster) mon;
 
@@ -383,11 +435,14 @@ public class GameShell extends Applet implements KeyListener, MouseListener, Mou
         }
     }
 
+    /**
+     * This method is used to store the highscores of the users for the game. It rewrites the files used to refer for the scores when a score needs to be added and deleted
+     */
     public void readScores() {
         people = new ArrayList<Person>();
 
         try {
-            FileReader fr = new FileReader("scores.dat");
+            FileReader fr = new FileReader("scores.txt");
             BufferedReader br = new BufferedReader(fr);
             String s;
             while ((s = br.readLine()) != null) {
@@ -427,6 +482,9 @@ public class GameShell extends Applet implements KeyListener, MouseListener, Mou
 
     }
 
+    /**
+     * This method is used to display the scores of the users onto the game display.
+     */
     public void drawScores() {
         int yi = 45;
 
@@ -443,7 +501,12 @@ public class GameShell extends Applet implements KeyListener, MouseListener, Mou
 
     }
 
-    public void calculateScore() {
+    /**
+     * This method is used to calculate the score of the game of which the user is playing.
+     * 
+     * @throws FileNotFoundException - This exception is made for I/O purposes.
+     */
+    public void calculateScore() throws FileNotFoundException {
         readScores();
 
         if (score > people.get(5).getScore()) {
@@ -476,27 +539,65 @@ public class GameShell extends Applet implements KeyListener, MouseListener, Mou
 
                 if (per.getScore() > current.getScore()) {
                     // swap 2
-                    Person temp = current;
                     people.set(k, per);
-                    people.set(k - 1, temp);
+                    people.set(k + 1, current);
                 }
             }
             // keep array size at 6
             people.remove(6);
-
+            
+            System.out.println(people);
+            
+            PrintWriter writer = new PrintWriter("scores.txt");
+            writer.print("");
+            writer.close();
+ 
+            for (int i = people.size() - 1 ; i > -1 ; i--){
+            
+            
+            try(FileWriter fw = new FileWriter("scores.txt", true);
+            		
+            		
+            	    BufferedWriter bw = new BufferedWriter(fw);
+            	    PrintWriter out = new PrintWriter(bw))
+            	{            		
+            	    out.println(people.get(i).getName());
+            	    //more code
+            	    out.println(people.get(i).getScore());
+            	    //more code
+            	} catch (IOException e) {
+            	    //exception handling left as an exercise for the reader
+            	}
+            	
+            }
+            
         }
 
     }
     private int fCount = 0;
 
     // one step of game - draw to buffer and displays all at the end
+    /**
+     * This method is used maintain the game when running. It handles the sounds and music which are to be played during gameplay.
+     * The method also dictates what occurs when the user is on the various screens of the game, such as the main menu and the scores display.
+     * The method also updates the platforms throughout the game, ensuring there are platforms as the game runs on. 
+     */
     public void update(Graphics g) {
-        if ((gameOver == true) && (fCount == 0)) {
+    	
+    	if ((gameOn == true) && (fCount == 0)) {
             //plays "fall" sound effect - game over
             acFall.play();
             fCount = 1;
         }
-
+    	
+        if ((gameOver == true) && (fCount == 1)) {
+            //plays "fall" sound effect - game over
+            ac.play();
+            acFall.stop();
+            fCount = 0;
+        }
+        
+        
         // if on main menu
         if (menuOn == true) {
             if (menuHoverOver == 0) {
@@ -524,7 +625,12 @@ public class GameShell extends Applet implements KeyListener, MouseListener, Mou
 
             if (nameEntered == false) {
                 nameEntered = true;
-                calculateScore();
+                try {
+					calculateScore();
+				} catch (FileNotFoundException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
             }
         }
 
@@ -542,6 +648,7 @@ public class GameShell extends Applet implements KeyListener, MouseListener, Mou
 
         if (gameOn == true) {
             //draw background
+            
             if (FOREST_MODE == false) {
                 offScreenBuffer.drawImage(gridImg, 0, 0, this);
             }
@@ -667,6 +774,9 @@ public class GameShell extends Applet implements KeyListener, MouseListener, Mou
         g.drawImage(offScreenImage, 0, 0, this);
     }
 
+    /**
+     * This method is used to check if the game is over if it meets a requirement to end the game.
+     */
     public void checkDoodleGameOver() {
         Doodle dod = (Doodle) myGuys.get(0);
 
@@ -691,6 +801,9 @@ public class GameShell extends Applet implements KeyListener, MouseListener, Mou
 
     }
 
+    /**
+     * This method is used to generate all the various types of platforms for each of the game levels.
+     */
     public void generateLiveRandomPlatform() {
         int color = 1;
 
@@ -814,6 +927,9 @@ public class GameShell extends Applet implements KeyListener, MouseListener, Mou
 
     }
 
+    /**
+     * This method is used to generate the Monster objects within the Game State.
+     */
     public void generateMonster() {
         int monX = (int) (Math.random() * 300);
         int monY = (int) (Math.random() * 20);
@@ -822,6 +938,9 @@ public class GameShell extends Applet implements KeyListener, MouseListener, Mou
         myMonsters.add(mon);
     }
 
+    /**
+     * This method checks if a Bullet object which a user fires hits a Monster object.
+     */
     public void checkBulletHit() {
     try{
         //checks if each bullet hits a monster
@@ -839,6 +958,10 @@ public class GameShell extends Applet implements KeyListener, MouseListener, Mou
     }catch(IndexOutOfBoundsException e){}
     }
 
+    /**
+     * The checkPlatformHit method is used to check if the Doodle object of the user makes contact with the platform on its base at the
+     * certain conditions. It also dictates what occurs right after contact is made. 
+     */
     public void checkPlatformHit() {
         Doodle doodle1 = (Doodle) myGuys.get(0);
 
@@ -906,6 +1029,11 @@ public class GameShell extends Applet implements KeyListener, MouseListener, Mou
 
     }
 
+    /**
+     * This method is instrumental to running sound files within the game. It's main purpose is to run all the music.
+     * 
+     * @param s - This parameter is used to represent the wav file which is to be run.
+     */
     public void wavRunner(String s) {
         try {
             File file = new File(s);
@@ -920,6 +1048,11 @@ public class GameShell extends Applet implements KeyListener, MouseListener, Mou
         clip.loop(0);
     }
 
+    /**
+     * This method is used to calculate which side the Doodle if facing.
+     * 
+     * @param x - This parameter represents the position of where the Doodle is facing.
+     */
     public void calculateLR(int x) {
         Doodle doodle2 = (Doodle) myGuys.get(0);
         int doodleX = doodle2.getX();
@@ -943,6 +1076,13 @@ public class GameShell extends Applet implements KeyListener, MouseListener, Mou
         myGuys.set(0, doodle2);
     }
 
+    /**
+     * This method is used to create and manage the Bullet object during gameplay. It handles all the math dictating how the bullets move 
+     * within the game.
+     * 
+     * @param mx - This represent the x position of the bullets creation. 
+     * @param my - This represent the y position of the bullets creation. 
+     */
     public void createBullet(int mx, int my) {
         // #############################################################
         // THIS IS WHERE ALL THE MATH MAGIC HAPPENS FOR BULLETS
@@ -1012,6 +1152,9 @@ public class GameShell extends Applet implements KeyListener, MouseListener, Mou
 
     }
 
+    /**
+     * This method is used to reset all the variables when a new game is started, to ensure a common starting point for the users.
+     */
     public void resetGame() {
         // resets all variables to start new game
         Doodle doodle1 = new Doodle(1, 190, 540, 60, 59);
@@ -1038,6 +1181,12 @@ public class GameShell extends Applet implements KeyListener, MouseListener, Mou
         myPlatforms.add(new Platform(1, xp, 500, 58, 15));
     }
 
+    /**
+     * This method is used to take the user keyboard input, and to output a change in the direction of the where the Doodle object
+     * is facing if needed.
+     * 
+     * @param f - This parameter represents the keyboard input. 
+     */
     public void overrideLR(int f) {
         // for keyboard input
         Doodle doodle2 = (Doodle) myGuys.get(0);
@@ -1055,11 +1204,22 @@ public class GameShell extends Applet implements KeyListener, MouseListener, Mou
         myGuys.set(0, doodle2);
     }
 
+    /**
+     * This method is used to display the graphics and images of the game, and to update them.
+     * 
+     * @param g - This represents the Graphics of the game.
+     */
     public void paint(Graphics g) {
         update(g);
     }
 
     // key listeners
+    /**
+     * This method is used to take in the mouse input of the user, and to send the information to other methods of the GameShell in order
+     * to give a correct output.
+     * 
+     * @param me - This parameter represents a mouse click.
+     */
     public void mousePressed(MouseEvent me) {
         //	System.out.println("X: "+me.getX()+ " | Y: "+me.getY());
         if (gameOn == true) {
@@ -1114,22 +1274,47 @@ public class GameShell extends Applet implements KeyListener, MouseListener, Mou
         }
     }
 
+    /**
+     * This method keeps track of when a mouse which is pressed is released.
+     * 
+     * @param me - This parameter is used to represent a mouse click.
+     */
     public void mouseReleased(MouseEvent me) {
         if (gameOn == true) {
             myImages.set(0, doodleRImg);
         }
     }
 
+    /**
+     * This method is used to indicate if the mouse enters a part of the display.
+     * 
+     * @param me - This parameter is used to represent a mouse click.
+     */
     public void mouseEntered(MouseEvent me) {
     }
 
+    /**
+     * This method is used to indicate if the mouse exits a part of the display.
+     * 
+     * @param me - This parameter is used to represent a mouse click.
+     */
     public void mouseExited(MouseEvent me) {
     }
-
+    
+    /**
+     * This method is used to indicate if the mouse clicks a part of the display.
+     * 
+     * @param me - This parameter is used to represent a mouse click.
+     */
     public void mouseClicked(MouseEvent me) {
     }
 
     // mouse motion listeners
+    /**
+     * This method is used to track the movements of the mouse, and provides the outputs that are needed to match the requirements of the game.
+     * 
+     * @param me - This parameter is used to represent a mouse click.
+     */
     public void mouseMoved(MouseEvent me) {
         if (menuOn == true) {
             if ((me.getX() >= 70) && (me.getX() <= 230)) {
@@ -1162,11 +1347,21 @@ public class GameShell extends Applet implements KeyListener, MouseListener, Mou
         }
     }
 
+    /**
+     * This method is used to check if the mouse is dragged on the display.
+     * 
+     * @param me - This parameter is used to represent a mouse click.
+     */
     public void mouseDragged(MouseEvent me) {
         //	calculateLR(me.getX());
     }
 
     // keyboard listeners
+    /**
+     * This method is used to check if a key is released on the users keyboard.
+     * 
+     * @param e - This parameter is used to represent a keyboard tap.
+     */
     public void keyReleased(KeyEvent e) {
         // set back to 0
         if (gameOn == true) {
@@ -1176,10 +1371,21 @@ public class GameShell extends Applet implements KeyListener, MouseListener, Mou
         }
     }
 
+    /**
+     * This method is used to check if keys on the keyboard are typed.
+     * 
+     * @param e - This parameter is used to represent a keyboard tap.
+     */
     public void keyTyped(KeyEvent e) {
     }
     private int spaceCount;
 
+    /**
+     * This method is used to check if a key on the keyboard is pressed by the user. It process the key input and goes through various cases in order
+     * to provide the correct output to the situation.
+     * 
+     * @param e - This parameter is used to represent a keyboard tap.
+     */
     public void keyPressed(KeyEvent e) {
         switch (e.getKeyCode()) {
             case 32: {

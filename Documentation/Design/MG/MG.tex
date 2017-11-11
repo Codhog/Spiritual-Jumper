@@ -1,0 +1,317 @@
+\documentclass[12pt, titlepage]{article}
+
+\usepackage{fullpage}
+\usepackage[round]{natbib}
+\usepackage{multirow}
+\usepackage{booktabs}
+\usepackage{tabularx}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks,
+    citecolor=black,
+    filecolor=black,
+    linkcolor=red,
+    urlcolor=blue
+}
+\usepackage[round]{natbib}
+
+\newcounter{acnum}
+\newcommand{\actheacnum}{AC\theacnum}
+\newcommand{\acref}[1]{AC\ref{#1}}
+
+\newcounter{ucnum}
+\newcommand{\uctheucnum}{UC\theucnum}
+\newcommand{\uref}[1]{UC\ref{#1}}
+
+\newcounter{mnum}
+\newcommand{\mthemnum}{M\themnum}
+\newcommand{\mref}[1]{M\ref{#1}}
+
+\title{SE 3XA3: Software Requirements Specification\\Spiritual Jumper}
+
+\author{Team 25, N.L.E.
+		\\ Ruoyuan Liu, liur19
+		\\ Zihao Chen, chenz87
+		\\ Gundeep Kanwal, kanwalg
+}
+
+\date{\today}
+
+\begin{document}
+
+\maketitle
+\pagenumbering{roman}
+\tableofcontents
+\listoftables
+\listoffigures
+
+
+\begin{table}[bp]
+\caption{\bf Revision History}
+\begin{tabularx}{\textwidth}{p{3cm}p{2cm}X}
+\toprule {\bf Date} & {\bf Version} & {\bf Notes}\\
+\midrule
+Nov.10 & 1.0 & Document created\\
+Nov.10 & 1.1 & Document Rev 0 finished\\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\newpage
+\newpage
+
+\pagenumbering{arabic}
+\section{Introduction}\label{SecIntro}
+\subsection{Project Overview}
+The Spiritual Jumper Project aims at recreating and enhancing the gameplay of an classic game named "Doodle Jump", based on an existing project on Github. Other than re-implement the source code. The N.L.E team is planning to complete a series of formal documentation and testing to deliver a more comprehensive and complete project to the public.
+\subsection{Document Context}
+This Module Guide Document is used to comprehensively describe the different modules in the Spiritual Jumper project, also provide a way to overlook the project design as a whole from conceptual perspective.\\\\
+The MG(Module Document) is based on the previous SRS(Software Requirements Specification) document. The SRS describes the system the MG should be able to accomplish, also with potential changes the MG should cover.\\\\
+The MIS(Module Interface Specification) should be complete after MG is finished, which comtains actual implementation details of the modules that mentioned in MG.
+\subsection{Design Principle}
+In order to keep the project as robust and maintanable as we could, the N.L.E team is obligated to implement the following design principle: information hiding, low coupling and high cohesion.
+
+High cohesion and low coupling make sure that the modules keeps certain independence, which benefits further maintenance and testing. Information hiding ensures that the interface will not be affected.
+\subsection{Document Structure}
+1. Overview of the Document.\\
+2. List of changes\\
+3. Hierarchy of current modules\\
+4. Connection between requirements and design\\
+5. Module docomposition details.
+6. Relationships between modules, requirements and anticipated changes.
+7. Revision history
+
+\section{Anticipated and Unlikely Changes} \label{SecChange}
+
+\subsection{Anticipated Changes} \label{SecAchange}
+
+Anticipated changes are the source of the information that is to be hidden
+inside the modules. Ideally, changing one of the anticipated changes will only
+require changing the one module that hides the associated decision. The approach
+adapted here is called design for
+change.
+
+\begin{description}
+
+\item[\refstepcounter{acnum} \actheacnum \label{acInput}:] The format of the
+  initial input data.
+\item[\refstepcounter{acnum} \actheacnum \label{acGUI}:] The interface of menu, in game background, buttons etc.
+\item[\refstepcounter{acnum} \actheacnum \label{acGraphics}:] The character apperance, game appearance and animation. Alse resolution of the game.
+\item[\refstepcounter{acnum} \actheacnum \label{acItems}:] The item function and modification of the game.
+\item[\refstepcounter{acnum} \actheacnum \label{acDifficulty}:] The difficulty of the game in terms of platform generation, monster generation etc.
+\end{description}
+
+\subsection{Unlikely Changes} \label{SecUchange}
+
+The module design should be as general as possible. However, a general system is
+more complex. Sometimes this complexity is not necessary. Fixing some design
+decisions at the system architecture stage can simplify the software design. If
+these decision should later need to be changed, then many parts of the design
+will potentially need to be modified. Hence, it is not intended that these
+decisions will be changed.
+
+\begin{description}
+\item[\refstepcounter{ucnum} \uctheucnum \label{ucIO}:] Input/Output devices
+  (Input: File and/or Keyboard, Output: File, Memory, and/or Screen).
+\item[\refstepcounter{ucnum} \uctheucnum \label{ucInput}:] There will always be
+  a source of input data external to the software.
+\item[\refstepcounter{ucnum} \uctheucnum \label{ucHardware}:] The specific
+  hardware on which the software is running.
+\item[\refstepcounter{ucnum} \uctheucnum \label{ucStructure}:] The primary structure of the whole game.
+\end{description}
+
+\section{Module Hierarchy} \label{SecMH}
+
+This section provides an overview of the module design. Modules are summarized
+in a hierarchy decomposed by secrets in Table \ref{TblMH}. The modules listed
+below, which are leaves in the hierarchy tree, are the modules that will
+actually be implemented.
+
+\begin{description}
+\item [\refstepcounter{mnum} \mthemnum \label{mHH}:] Output Window Module
+\item [\refstepcounter{mnum} \mthemnum \label{mHH}:] User Input Module
+\item [\refstepcounter{mnum} \mthemnum \label{mHH}:] Physics Module
+\item [\refstepcounter{mnum} \mthemnum \label{mHH}:] Controller Module
+\item [\refstepcounter{mnum} \mthemnum \label{mHH}:] Stat-Record Module
+
+\begin{table}[h!]
+\centering
+\begin{tabular}{p{0.3\textwidth} p{0.6\textwidth}}
+\toprule
+\textbf{Level 1} & \textbf{Level 2}\\
+\midrule
+{Hardware-Hiding Module} & Controller Module \\
+\midrule
+\multirow{3}{0.3\textwidth}{Behaviour-Hiding Module} & User Input Module\\
+& Output Window Module\\
+& Stat-Record Module\\
+\midrule
+\multirow{1}{0.3\textwidth}{Software Decision Module} & {Physics Module}\\
+
+\bottomrule
+\end{tabular}
+\caption{Module Hierarchy}
+\label{TblMH}
+\end{table}
+
+\end{description}
+
+
+
+
+\section{Connection Between Requirements and Design} \label{SecConnection}
+
+The design of the system is intended to satisfy the requirements developed in
+the SRS. In this stage, the system is decomposed into modules. The connection
+between requirements and modules is listed in Table \ref{TblRT}.
+
+\section{Module Decomposition} \label{SecMD}
+
+Module decomposition is the process of creating a set of sub-modules that adhere to the principle of  "information hiding" proposed by Parnas. This principle of information hiding will be used as a fundamental concept for Spiritual Jumper's object oriented development.
+The \emph{Secrets} field in a module
+decomposition is a brief statement of the design decision hidden by the
+module. The \emph{Services} field specifies \emph{what} the module will do
+without documenting \emph{how} to do it. For each module, a suggestion for the
+implementing software is given under the \emph{Implemented By} title. If the
+entry is \emph{OS}, this means that the module is provided by the operating
+system or by standard programming language libraries.  Also indicate if the
+module will be implemented specifically for the software.
+
+Only the leaf modules in the
+hierarchy have to be implemented. If a dash (\emph{--}) is shown, this means
+that the module is not a leaf and will not have to be implemented. Whether or
+not this module is implemented depends on the programming language
+selected.
+
+
+\subsection{M1: Hardware Hiding Modules (Pointing Devices, Keyboard, and Displays}
+
+\subsection{Hardware Hiding Modules (\mref{mHH})}
+
+\begin{description}
+
+
+\item[Module 1]
+\item[Secrets:]How the game is displayed, how the game is run, how the game is closed.
+\item[Services:]Creates and runs all the states for the program, displays the graphics and all the images and sounds for the user.
+\item[Implemented By:] GameShell Module
+\end{description}
+
+\subsection{Behaviour-Hiding Modules}
+
+\begin{description}
+\item[Module 2]
+\item[Secrets:]How Character objects are created and how they move and collide.
+\item[Services:]Creates a Character ADT with abilities to create them with a number of parameters including their positions and size. Also provides the ability to check if characters are colliding.
+\item[Implemented By:] Character Module
+\end{description}
+
+\begin{description}
+\item[Module 3]
+\item[Secrets:]How the user enters and saves their names, along with their high scores.
+\item[Services:]Creates a person object with two inputs, one being the score that the user had received, the other being the name they had added.
+\item[Implemented By:] person Module
+\end{description}
+
+\begin{description}
+\item[Module 4]
+\item[Secrets:]How platforms are created, how they are moved.
+\item[Services:]Creates the game platforms through the use of a platform object with multiple input parameters dictation it's position and attributes.
+\item[Implemented By:] platform Module
+\end{description}
+
+\begin{description}
+\item[Module 5]
+\item[Secrets:]How the monsters are created, how they move.
+\item[Services:]Creates the monsters within the game through the use of a monster object with many parameters within the constructor detailing its position and size. 
+\item[Implemented By:] monster Module
+\end{description}
+
+\begin{description}
+\item[Module 6]
+\item[Secrets:]How the bullets are created, how they move around the game display. 
+\item[Services:]Creates the bullet objects with paramaeters detailing their initial location and size. Controls the movements of the bullets.
+\item[Implemented By:] bullet Module
+\end{description}
+
+\begin{description}
+\item[Module 7]
+\item[Secrets:]How the Doodle is created, how it moves around, how it changes directions of its face.
+\item[Services:]Creates a Doodle object with parameters regarding it's position and size. Controls the movements of the doodle along with the directions of the face.
+\item[Implemented By:] Doodle Module
+\end{description}
+
+
+\subsubsection{Input Format Module}
+
+\subsection{Software Decision Module}
+
+\section{Traceability Matrix} \label{SecTM}
+
+This section shows two traceability matrices: between the modules and the
+requirements and between the modules and the anticipated changes.
+
+% the table should use mref, the requirements should be named, use something
+% like fref
+\begin{table}[H]
+\centering
+\begin{tabular}{p{0.2\textwidth} p{0.6\textwidth}}
+\toprule
+\textbf{Req.} & \textbf{Modules}\\
+\midrule
+R1 & M1\\
+R2 & M2, M4\\
+R3 & M2, M5\\
+R4 & M2, M6\\
+R5 & M2, M7\\
+R6 & M1, M3\\
+R7 & M1, M2, M4, M5, M6, M7\\
+
+\bottomrule
+\end{tabular}
+\caption{Trace Between Requirements and Modules}
+\label{TblRT}
+\end{table}
+
+\begin{table}[H]
+\centering
+\begin{tabular}{p{0.2\textwidth} p{0.6\textwidth}}
+\toprule
+\textbf{AC} & \textbf{Modules}\\
+\midrule
+AC1 & \ M1\\
+\bottomrule
+\end{tabular}
+\caption{Trace Between Anticipated Changes and Modules}
+\label{TblACT}
+\end{table}
+
+\section{Use Hierarchy Between Modules} \label{SecUse}
+
+In this section, the uses hierarchy between modules is
+provided. \citet{Parnas1978} said of two programs A and B that A {\em uses} B if
+correct execution of B may be necessary for A to complete the task described in
+its specification. That is, A {\em uses} B if there exist situations in which
+the correct functioning of A depends upon the availability of a correct
+implementation of B.  Figure \ref{FigUH} illustrates the use relation between
+the modules. It can be seen that the graph is a directed acyclic graph
+(DAG). Each level of the hierarchy offers a testable and usable subset of the
+system, and modules in the higher level of the hierarchy are essentially simpler
+because they use modules from the lower levels.
+
+\begin{figure}[H]
+\centering
+%\includegraphics[width=0.7\textwidth]{UsesHierarchy.png}
+\includegraphics{Thing.png}
+\caption{Use hierarchy among modules}
+\label{FigUH}
+\end{figure}
+
+%\section*{References}
+
+\bibliographystyle {plainnat}
+\bibliography {MG}
+
+\end{document}

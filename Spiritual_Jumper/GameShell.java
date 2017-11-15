@@ -72,7 +72,7 @@ public class GameShell extends Applet implements KeyListener, MouseListener, Mou
     private boolean gameOn = false;
     private boolean scoresOn = false;
     // AudioClip for midi files
-    private AudioClip ac, acFall;
+    private AudioClip ac, acFall, jungle;
     private Clip clip;
 
     // called by Applet before beginning - 
@@ -86,6 +86,7 @@ public class GameShell extends Applet implements KeyListener, MouseListener, Mou
     public void init() {
         acFall = getAudioClip(getDocumentBase(), "sounds/pl.wav");
         ac= getAudioClip(getDocumentBase(), "sounds/fall.wav");
+        jungle = getAudioClip(getDocumentBase(), "sounds/Jungle Music Background.wav");
 
         score = 0;
 
@@ -544,6 +545,7 @@ public class GameShell extends Applet implements KeyListener, MouseListener, Mou
                 }
             }
             // keep array size at 6
+            // Might remove this 
             people.remove(6);
             
             System.out.println(people);
@@ -1491,6 +1493,8 @@ public class GameShell extends Applet implements KeyListener, MouseListener, Mou
             case 114: {
                 // F3
                 if (FOREST_MODE == false) {
+                	jungle.play();
+                	acFall.stop();
                     FOREST_MODE = true;
                     myImages.set(10, dblueF);
                     myImages.set(1, greenF);
@@ -1519,6 +1523,8 @@ public class GameShell extends Applet implements KeyListener, MouseListener, Mou
                     myImages.set(7, brownP5);
                     myImages.set(8, brownP6);
                     FOREST_MODE = false;
+                    jungle.stop();
+                    acFall.play();
                 }
 
                 break;

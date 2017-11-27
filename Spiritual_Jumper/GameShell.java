@@ -1,4 +1,3 @@
-
 import java.awt.*;
 import java.awt.event.*;
 import java.applet.*;
@@ -446,10 +445,12 @@ public class GameShell extends Applet implements KeyListener, MouseListener, Mou
             FileReader fr = new FileReader("scores.txt");
             BufferedReader br = new BufferedReader(fr);
             String s;
+            if (people.isEmpty() == false){
             while ((s = br.readLine()) != null) {
                 int num = Integer.parseInt(br.readLine());
                 Person per = new Person(s, num);
                 people.add(per);
+            }
             }
             fr.close();
         } catch (IOException e) {
@@ -508,9 +509,62 @@ public class GameShell extends Applet implements KeyListener, MouseListener, Mou
      * @throws FileNotFoundException - This exception is made for I/O purposes.
      */
     public void calculateScore() throws FileNotFoundException {
-        readScores();
 
-        if (score > people.get(5).getScore()) {
+        if (people.size() == 0) {
+
+            String name = "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa";
+
+            name = JOptionPane.showInputDialog(null, "You have gotten a new high score!\nYour Score: " + score + "\nPlease enter your name below:", "High Score", JOptionPane.INFORMATION_MESSAGE);
+
+            if (name == null) {
+                name = "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa";
+            }
+
+            while ((name.length() > 20) || (name.length() == 0)) {
+                name = JOptionPane.showInputDialog(null, "You have gotten a new high score!\nYour Score: " + score + "\nPlease enter your name below:\n\nMust be less than 20 characters.", "High Score", JOptionPane.INFORMATION_MESSAGE);
+                if (name == null) {
+                    name = "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa";
+                }
+            }
+
+            // write score to file
+            Person per = new Person(name, score);
+
+            people.add(per);
+
+            //add new hiscore to end
+            //keep moving up the hiscore table until it belongs
+            
+            System.out.println(people);
+            
+            PrintWriter writer = new PrintWriter("scores.txt");
+            writer.print("");
+            writer.close();
+ 
+            for (int i = people.size() - 1 ; i > -1 ; i--){
+            
+            
+            try(FileWriter fw = new FileWriter("scores.txt", true);
+            		
+            		
+            	    BufferedWriter bw = new BufferedWriter(fw);
+            	    PrintWriter out = new PrintWriter(bw))
+            	{            		
+            	    out.println(people.get(i).getName());
+            	    //more code
+            	    out.println(people.get(i).getScore());
+            	    //more code
+            	} catch (IOException e) {
+            	    //exception handling left as an exercise for the reader
+            	}
+            	
+            }
+            
+        }
+        
+        readScores();
+        
+        if (score > people.get(people.size() - 1).getScore() && people.size() > 1) {
 
             String name = "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa";
 
@@ -545,8 +599,9 @@ public class GameShell extends Applet implements KeyListener, MouseListener, Mou
                 }
             }
             // keep array size at 6
-            // Might remove this 
+            if(people.size() == 6){
             people.remove(6);
+            }
             
             System.out.println(people);
             

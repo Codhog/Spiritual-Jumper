@@ -550,7 +550,6 @@ public class GameShell extends Applet implements KeyListener, MouseListener, Mou
             }
                         
             PrintWriter writer = new PrintWriter("scores.txt");
-            writer.print("");
             writer.close();
  
             for (int i = people.size() - 1 ; i > -1 ; i--){
@@ -1325,7 +1324,7 @@ public class GameShell extends Applet implements KeyListener, MouseListener, Mou
 
         if (gameOver == true) {
             if ((me.getX() >= 68) && (me.getX() <= 225)) {
-                if ((me.getY() >= 155) && (me.getY() <= 208)) {
+                if ((me.getY() >= 375) && (me.getY() <= 450)) {
                     gameOver = false;
                     menuOn = true;
                     scoresOn = false;
@@ -1403,7 +1402,7 @@ public class GameShell extends Applet implements KeyListener, MouseListener, Mou
             }
         } else if (gameOver == true) {
             if ((me.getX() >= 68) && (me.getX() <= 225)) {
-                if ((me.getY() >= 155) && (me.getY() <= 208)) {
+                if ((me.getY() >= 375) && (me.getY() <= 450)) {
                     gameOverHover = 1;
                 }
             } else {

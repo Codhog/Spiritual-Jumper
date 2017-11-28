@@ -435,6 +435,10 @@ public class GameShell extends Applet implements KeyListener, MouseListener, Mou
             myMonsters.remove(w);
         }
     }
+    
+    /**
+    * This method is used to store the highscores of the users for the game. It rewrites the files used to refer for the scores when a score needs to be added and deleted
+    */
     public void readScores() {
         people = new ArrayList<Person>();
 
@@ -478,7 +482,10 @@ public class GameShell extends Applet implements KeyListener, MouseListener, Mou
         people = sorted;
 
     }
-
+    
+    /**
+     * This method is used to display the scores of the users onto the game display.
+     */
     public void drawScores() {
         int yi = 45;
 
@@ -494,7 +501,11 @@ public class GameShell extends Applet implements KeyListener, MouseListener, Mou
         }
 
     }
-
+    /**
+     * This method is used to calculate the score of the game of which the user is playing.
+     * 
+     * @throws FileNotFoundException - This exception is made for I/O purposes.
+     */
     public void calculateScore() throws FileNotFoundException {
     	
         readScores();
@@ -543,7 +554,6 @@ public class GameShell extends Applet implements KeyListener, MouseListener, Mou
             writer.close();
  
             for (int i = people.size() - 1 ; i > -1 ; i--){
-            
             
             try(FileWriter fw = new FileWriter("scores.txt", true);
             		
@@ -1276,23 +1286,29 @@ public class GameShell extends Applet implements KeyListener, MouseListener, Mou
         }
 
         if (menuOn == true) {
-            if ((me.getX() >= 0) && (me.getX() <= 200)) {
-                if ((me.getY() >= 150) && (me.getY() <= 200)) {
-                    menuOn = false;
-                    gameOn = true;
-                    gameOver = false;
-                    resetGame();
-                }
+            if ((me.getX() >= 0) && (me.getX() <= 200) && (me.getY() >= 150) && (me.getY() <= 225) ) {
+                menuOn = false;
+                gameOn = true;
+                gameOver = false;
+                FOREST_MODE = false;
+                resetGame();
             }
 
-            if ((me.getX() >= 0) && (me.getX() <= 400)) {
-                if ((me.getY() >= 275) && (me.getY() <= 325)) {
-                    scoresOn = true;
-                    menuOn = false;
-                    gameOver = false;
-                    readScores();
-                }
+            if ((me.getX() >= 0) && (me.getX() <= 400) && (me.getY() >= 275) && (me.getY() <= 350)) {
+                scoresOn = true;
+                menuOn = false;
+                gameOver = false;
+                readScores();
             }
+            
+            if ((me.getX() >= 0) && (me.getX() <= 300) && (me.getY() >= 226) && (me.getY() <= 274)) {
+                menuOn = false;
+                gameOn = true;
+                gameOver = false;
+                FOREST_MODE = true;
+                resetGame();
+            }
+            
         }
 
         if (scoresOn == true) {
@@ -1363,18 +1379,21 @@ public class GameShell extends Applet implements KeyListener, MouseListener, Mou
      */
     public void mouseMoved(MouseEvent me) {
         if (menuOn == true) {
-            if ((me.getX() >= 0) && (me.getX() <= 200)) {
-                if ((me.getY() >= 150) && (me.getY() <= 200)) {
-                    menuHoverOver = 1;
-                }
-            } else if ((me.getX() >= 0) && (me.getX() <= 400)) {
-                if ((me.getY() >= 275) && (me.getY() <= 325)) {
-                    menuHoverOver = 3;
-                }
-            } else {
-                menuHoverOver = 0;
+            if ((me.getX() >= 0) && (me.getX() <= 200) && (me.getY() >= 150) && (me.getY() <= 225)) {
+            	menuHoverOver = 1;
+            } else if ((me.getX() >= 0) && (me.getX() <= 400) && (me.getY() >= 275) && (me.getY() <= 350)) {
+                menuHoverOver = 3;
+            } else if ((me.getX() >= 0) && (me.getX() <= 300) && (me.getY() >= 226) && (me.getY() <= 274)) {
+                menuHoverOver = 2;
             }
-        } else if (scoresOn == true) {
+            
+            else {
+                menuHoverOver = 0;
+            
+            }
+        }
+            
+            else if (scoresOn == true) {
             if ((me.getX() >= 250) && (me.getX() <= 400)) {
                 if ((me.getY() >= 520) && (me.getY() <= 570)) {
                     scoresHoverOver = 1;
@@ -1391,7 +1410,7 @@ public class GameShell extends Applet implements KeyListener, MouseListener, Mou
                 gameOverHover = 0;
             }
         }
-    }
+       }
 
     /**
      * This method is used to check if the mouse is dragged on the display.

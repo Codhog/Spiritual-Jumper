@@ -48,7 +48,7 @@ public class GameShell extends Applet implements KeyListener, MouseListener, Mou
     private Image greenP, blueP, whiteP, dblueP, greenS0, greenS1;
     private Image brownP1, brownP2, brownP3, brownP4, brownP5, brownP6;
     private Image batM1, batM2, batM3;
-    private Image intro0, intro1, intro3, scores0, scores1, gameover0, gameover1;
+    private Image intro0, intro1, intro2, intro3, scores0, scores1, gameover0, gameover1;
     private Image gridF, borderF, dblueF, greenF, whiteF, greenS0F, greenS1F;
     private Image brownF1, brownF2, brownF3, brownF4, brownF5, brownF6;
     private Character doodle;
@@ -107,8 +107,9 @@ public class GameShell extends Applet implements KeyListener, MouseListener, Mou
         topbar = Toolkit.getDefaultToolkit().getImage("images/topbar.png");
         bulletImg = Toolkit.getDefaultToolkit().getImage("images/bullet.png");
 
-        intro0 = Toolkit.getDefaultToolkit().getImage("images/menu/intro0.png");
+        intro0 = Toolkit.getDefaultToolkit().getImage("images/menu/intro.png");
         intro1 = Toolkit.getDefaultToolkit().getImage("images/menu/intro1.png");
+        intro2 = Toolkit.getDefaultToolkit().getImage("images/menu/intro2.png");
         intro3 = Toolkit.getDefaultToolkit().getImage("images/menu/intro3.png");
         scores0 = Toolkit.getDefaultToolkit().getImage("images/menu/scores0.png");
         scores1 = Toolkit.getDefaultToolkit().getImage("images/menu/scores1.png");
@@ -434,10 +435,6 @@ public class GameShell extends Applet implements KeyListener, MouseListener, Mou
             myMonsters.remove(w);
         }
     }
-
-    /**
-     * This method is used to store the highscores of the users for the game. It rewrites the files used to refer for the scores when a score needs to be added and deleted
-     */
     public void readScores() {
         people = new ArrayList<Person>();
 
@@ -445,12 +442,10 @@ public class GameShell extends Applet implements KeyListener, MouseListener, Mou
             FileReader fr = new FileReader("scores.txt");
             BufferedReader br = new BufferedReader(fr);
             String s;
-            if (people.isEmpty() == false){
             while ((s = br.readLine()) != null) {
                 int num = Integer.parseInt(br.readLine());
                 Person per = new Person(s, num);
                 people.add(per);
-            }
             }
             fr.close();
         } catch (IOException e) {
@@ -484,9 +479,6 @@ public class GameShell extends Applet implements KeyListener, MouseListener, Mou
 
     }
 
-    /**
-     * This method is used to display the scores of the users onto the game display.
-     */
     public void drawScores() {
         int yi = 45;
 
@@ -503,68 +495,11 @@ public class GameShell extends Applet implements KeyListener, MouseListener, Mou
 
     }
 
-    /**
-     * This method is used to calculate the score of the game of which the user is playing.
-     * 
-     * @throws FileNotFoundException - This exception is made for I/O purposes.
-     */
     public void calculateScore() throws FileNotFoundException {
-
-        if (people.size() == 0) {
-
-            String name = "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa";
-
-            name = JOptionPane.showInputDialog(null, "You have gotten a new high score!\nYour Score: " + score + "\nPlease enter your name below:", "High Score", JOptionPane.INFORMATION_MESSAGE);
-
-            if (name == null) {
-                name = "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa";
-            }
-
-            while ((name.length() > 20) || (name.length() == 0)) {
-                name = JOptionPane.showInputDialog(null, "You have gotten a new high score!\nYour Score: " + score + "\nPlease enter your name below:\n\nMust be less than 20 characters.", "High Score", JOptionPane.INFORMATION_MESSAGE);
-                if (name == null) {
-                    name = "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa";
-                }
-            }
-
-            // write score to file
-            Person per = new Person(name, score);
-
-            people.add(per);
-
-            //add new hiscore to end
-            //keep moving up the hiscore table until it belongs
-            
-            System.out.println(people);
-            
-            PrintWriter writer = new PrintWriter("scores.txt");
-            writer.print("");
-            writer.close();
- 
-            for (int i = people.size() - 1 ; i > -1 ; i--){
-            
-            
-            try(FileWriter fw = new FileWriter("scores.txt", true);
-            		
-            		
-            	    BufferedWriter bw = new BufferedWriter(fw);
-            	    PrintWriter out = new PrintWriter(bw))
-            	{            		
-            	    out.println(people.get(i).getName());
-            	    //more code
-            	    out.println(people.get(i).getScore());
-            	    //more code
-            	} catch (IOException e) {
-            	    //exception handling left as an exercise for the reader
-            	}
-            	
-            }
-            
-        }
-        
+    	
         readScores();
-        
-        if (score > people.get(people.size() - 1).getScore() && people.size() > 1) {
+
+        if (people.size() != 0 && score > people.get(people.size() - 1).getScore() ) {
 
             String name = "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa";
 
@@ -599,12 +534,10 @@ public class GameShell extends Applet implements KeyListener, MouseListener, Mou
                 }
             }
             // keep array size at 6
-            if(people.size() == 6){
+            if(people.size() > 5){
             people.remove(6);
             }
-            
-            System.out.println(people);
-            
+                        
             PrintWriter writer = new PrintWriter("scores.txt");
             writer.print("");
             writer.close();
@@ -629,8 +562,61 @@ public class GameShell extends Applet implements KeyListener, MouseListener, Mou
             }
             
         }
+            else if (people.size() == 0) {
+
+                String name = "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa";
+
+                name = JOptionPane.showInputDialog(null, "You have gotten a new high score!\nYour Score: " + score + "\nPlease enter your name below:", "High Score", JOptionPane.INFORMATION_MESSAGE);
+
+                if (name == null) {
+                    name = "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa";
+                }
+
+                while ((name.length() > 20) || (name.length() == 0)) {
+                    name = JOptionPane.showInputDialog(null, "You have gotten a new high score!\nYour Score: " + score + "\nPlease enter your name below:\n\nMust be less than 20 characters.", "High Score", JOptionPane.INFORMATION_MESSAGE);
+                    if (name == null) {
+                        name = "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa";
+                    }
+                }
+
+                // write score to file
+                Person per = new Person(name, score);
+
+                people.add(per);
+
+                //add new hiscore to end
+                //keep moving up the hiscore table until it belongs
+                
+                System.out.println(people);
+                
+                PrintWriter writer = new PrintWriter("scores.txt");
+                writer.print("");
+                writer.close();
+     
+                for (int i = people.size() - 1 ; i > -1 ; i--){
+                
+                
+                try(FileWriter fw = new FileWriter("scores.txt", true);
+                		
+                		
+                	    BufferedWriter bw = new BufferedWriter(fw);
+                	    PrintWriter out = new PrintWriter(bw))
+                	{            		
+                	    out.println(people.get(i).getName());
+                	    //more code
+                	    out.println(people.get(i).getScore());
+                	    //more code
+                	} catch (IOException e) {
+                	    //exception handling left as an exercise for the reader
+                	}
+                	
+                }
+
+
+        }
 
     }
+
     private int fCount = 0;
 
     // one step of game - draw to buffer and displays all at the end
@@ -662,6 +648,9 @@ public class GameShell extends Applet implements KeyListener, MouseListener, Mou
             }
             if (menuHoverOver == 1) {
                 offScreenBuffer.drawImage(intro1, 0, 0, this);
+            }
+            if (menuHoverOver == 2) {
+                offScreenBuffer.drawImage(intro2, 0, 0, this);
             }
             if (menuHoverOver == 3) {
                 offScreenBuffer.drawImage(intro3, 0, 0, this);
@@ -1287,8 +1276,8 @@ public class GameShell extends Applet implements KeyListener, MouseListener, Mou
         }
 
         if (menuOn == true) {
-            if ((me.getX() >= 70) && (me.getX() <= 230)) {
-                if ((me.getY() >= 160) && (me.getY() <= 210)) {
+            if ((me.getX() >= 0) && (me.getX() <= 200)) {
+                if ((me.getY() >= 150) && (me.getY() <= 200)) {
                     menuOn = false;
                     gameOn = true;
                     gameOver = false;
@@ -1296,8 +1285,8 @@ public class GameShell extends Applet implements KeyListener, MouseListener, Mou
                 }
             }
 
-            if ((me.getX() >= 280) && (me.getX() <= 400)) {
-                if ((me.getY() >= 400) && (me.getY() <= 450)) {
+            if ((me.getX() >= 0) && (me.getX() <= 400)) {
+                if ((me.getY() >= 275) && (me.getY() <= 325)) {
                     scoresOn = true;
                     menuOn = false;
                     gameOver = false;
@@ -1374,12 +1363,12 @@ public class GameShell extends Applet implements KeyListener, MouseListener, Mou
      */
     public void mouseMoved(MouseEvent me) {
         if (menuOn == true) {
-            if ((me.getX() >= 70) && (me.getX() <= 230)) {
-                if ((me.getY() >= 160) && (me.getY() <= 210)) {
+            if ((me.getX() >= 0) && (me.getX() <= 200)) {
+                if ((me.getY() >= 150) && (me.getY() <= 200)) {
                     menuHoverOver = 1;
                 }
-            } else if ((me.getX() >= 280) && (me.getX() <= 400)) {
-                if ((me.getY() >= 400) && (me.getY() <= 450)) {
+            } else if ((me.getX() >= 0) && (me.getX() <= 400)) {
+                if ((me.getY() >= 275) && (me.getY() <= 325)) {
                     menuHoverOver = 3;
                 }
             } else {

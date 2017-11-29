@@ -113,8 +113,8 @@ public class GameShell extends Applet implements KeyListener, MouseListener, Mou
         intro3 = Toolkit.getDefaultToolkit().getImage("images/menu/intro3.png");
         scores0 = Toolkit.getDefaultToolkit().getImage("images/menu/scores0.png");
         scores1 = Toolkit.getDefaultToolkit().getImage("images/menu/scores1.png");
-        gameover0 = Toolkit.getDefaultToolkit().getImage("images/menu/gameover0.png");
-        gameover1 = Toolkit.getDefaultToolkit().getImage("images/menu/gameover1.png");
+        gameover0 = Toolkit.getDefaultToolkit().getImage("images/menu/gameover1.png");
+        gameover1 = Toolkit.getDefaultToolkit().getImage("images/menu/gameover0.png");
 
         doodleRImg = Toolkit.getDefaultToolkit().getImage("images/doodleR.png");
         doodleLImg = Toolkit.getDefaultToolkit().getImage("images/doodleL.png");
@@ -500,6 +500,7 @@ public class GameShell extends Applet implements KeyListener, MouseListener, Mou
             offScreenBuffer.setColor(Color.CYAN);
             offScreenBuffer.drawString(temp.getName(), 96, newY);
             offScreenBuffer.drawString("" + temp.getScore(), 350, newY);
+            offScreenBuffer.setColor(Color.BLACK);
         }
 
     }
@@ -711,6 +712,8 @@ public class GameShell extends Applet implements KeyListener, MouseListener, Mou
             }
 
             if (FOREST_MODE == true) {
+            	acFall.stop();
+            	jungle.play();
                 offScreenBuffer.drawImage(gridF, 0, 0, this);
             }
 
@@ -888,6 +891,7 @@ public class GameShell extends Applet implements KeyListener, MouseListener, Mou
         if (score <= 5000) {
             level = 0;
         }
+       
 
         color = (int) (Math.random() * 110) + 1;
 
@@ -1310,7 +1314,11 @@ public class GameShell extends Applet implements KeyListener, MouseListener, Mou
                 resetGame();
             }
             
-        }
+            if ((me.getX() >= 0) && (me.getX() <= 300) && (me.getY() >= 351) && (me.getY() <= 410)){
+            JOptionPane.showMessageDialog(null, "Controls\n+ Arrow keys to move\n+ F2 to toggle music\n+ F3 to toggle JUNGLE MODE\n+ ESC to return to menu\n+ Click to shoot\n+ Press SPACE to start jumping\n\n"
+                    + "Hints\n+ Don't fall off the screen or hit a monster\n+ You can jump off the side of the\n    screen and appear on the other side\n+ You can bounce on top of monsters\n+ Springs make you jump really high\n+ Try to get the highest score\n\n", "Doodle Jump", JOptionPane.INFORMATION_MESSAGE);
+            	}
+            }
 
         if (scoresOn == true) {
             if ((me.getX() >= 250) && (me.getX() <= 400)) {
@@ -1325,6 +1333,8 @@ public class GameShell extends Applet implements KeyListener, MouseListener, Mou
         }
 
         if (gameOver == true) {
+        	acFall.stop();
+        	jungle.stop();
             if ((me.getX() >= 68) && (me.getX() <= 225)) {
                 if ((me.getY() >= 375) && (me.getY() <= 450)) {
                     gameOver = false;
@@ -1335,6 +1345,7 @@ public class GameShell extends Applet implements KeyListener, MouseListener, Mou
                 }
             }
         }
+        
     }
 
     /**

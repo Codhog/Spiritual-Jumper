@@ -495,8 +495,10 @@ public class GameShell extends Applet implements KeyListener, MouseListener, Mou
 
             int newY = 166 + (yi * i);
 
-            offScreenBuffer.setFont(new Font("Comic Sans MS", Font.PLAIN, 20));
-            offScreenBuffer.drawString(temp.getName(), 85, newY);
+            Font font = new Font("Comic Sans MS", Font.PLAIN, 20);
+            offScreenBuffer.setFont(font);
+            offScreenBuffer.setColor(Color.CYAN);
+            offScreenBuffer.drawString(temp.getName(), 96, newY);
             offScreenBuffer.drawString("" + temp.getScore(), 350, newY);
         }
 
@@ -545,7 +547,7 @@ public class GameShell extends Applet implements KeyListener, MouseListener, Mou
                 }
             }
             // keep array size at 6
-            if(people.size() > 5){
+            if(people.size() > 6){
             people.remove(6);
             }
                         

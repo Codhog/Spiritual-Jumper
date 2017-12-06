@@ -1,14 +1,9 @@
-Project Name
-
-Team Name: Next Level Engineering
-
-Team Members: Ruoyuan Liu, Gundeep Kanwel, Zihao Chen
-
-This project is a reimplementation of an classic game doodle jump.
-
-The folders and files for this project are as follows:
-
-Doc - Documentation for the project
-Spiritual_Jumper - Implementation
-ProjectSchedule - Gantt chart for team work distribution
+The folder content under this repository are as follows:
+Rev1: all the documentation revisited and updated for revision 1
+Problem Statement: Original problem statement, rev0.
+Design: Contains MG and MIS in rev0.
+DevelopmentPlan: Development plan in rev0
+TestPlan: Test plan in rev 0.
+SRS: Software requirement specification in rev0.
+Final Presentation: powerpoint for final presentation.
 

@@ -8,6 +8,8 @@
 \usepackage{graphicx}
 \usepackage{float}
 \usepackage{hyperref}
+\usepackage[normalem]{ulem}
+\usepackage[usenames, dvipsnames]{color}
 \hypersetup{
     colorlinks,
     citecolor=black,
@@ -28,8 +30,10 @@
 \newcounter{mnum}
 \newcommand{\mthemnum}{M\themnum}
 \newcommand{\mref}[1]{M\ref{#1}}
+\definecolor{RevisionColour}{rgb}{0.0, 0.6, 0.3}
+\newcommand{\rev}[1]{\textcolor{RevisionColour}{#1}}
 
-\title{SE 3XA3: Software Requirements Specification\\Spiritual Jumper}
+\title{SE 3XA3: \sout{Software Requirements Specification} \rev{\\Module Guide}\\Spiritual Jumper}
 
 \author{Team 25, N.L.E.
 		\\ Ruoyuan Liu, liur19
@@ -48,28 +52,27 @@
 \listoffigures
 
 
-\begin{table}[bp]
-\caption{\bf Revision History}
+\begin{table}[tp]
+\caption{\sout{\bf Revision History}}
 \begin{tabularx}{\textwidth}{p{3cm}p{2cm}X}
-\toprule {\bf Date} & {\bf Version} & {\bf Notes}\\
+\toprule {\bf Date} & \sout{\bf Version} \rev{\textbf{Developer(s)}} & \sout{\bf Notes} \rev{\textbf{Change}}\\
 \midrule
-Nov.10 & 1.0 & Document created\\
-Nov.10 & 1.1 & Document Rev 0 finished\\
+\sout{Nov.10} \rev{11/10/2017} & \sout{1.0} \rev{Ruoyuan, Zihao, Gundeep} & Document created\\
+\sout{Nov.10} \rev{12/06/2017} & \sout{1.1} \rev{Ruoyuan, Zihao, Gundeep} & \sout{Document Rev 0 finished} \rev{Document Rev 1 Finished}\\
 \bottomrule
 \end{tabularx}
 \end{table}
 
 \newpage
-\newpage
 
 \pagenumbering{arabic}
 \section{Introduction}\label{SecIntro}
 \subsection{Project Overview}
-The Spiritual Jumper Project aims at recreating and enhancing the gameplay of an classic game named "Doodle Jump", based on an existing project on Github. Other than re-implement the source code. The N.L.E team is planning to complete a series of formal documentation and testing to deliver a more comprehensive and complete project to the public.
+The Spiritual Jumper \sout{Project} aims at recreating and enhancing the gameplay of an classic game named "Doodle Jump", based on an existing project on Github. \sout{Other than re-implement the source code. The N.L.E team is planning to complete a series of formal documentation and testing to deliver a more comprehensive and complete project to the public.} \rev{The motivation behind this document is to allow for the decomposition of systems that plan to scale into the future with updates, which allow for developers to concurrently develop components without risk of components not working with each other. This project is concerned with creating a modular system design for the game that is well documented to allow for future upgrades to improve on current game mechanics. Currently the system design principle is that of Model-View-Controller (MVC software design pattern) which is believed to be the best fit for allowing Spiritual Jumper to be modular.}
 \subsection{Document Context}
-This Module Guide Document is used to comprehensively describe the different modules in the Spiritual Jumper project, also provide a way to overlook the project design as a whole from conceptual perspective.\\\\
-The MG(Module Document) is based on the previous SRS(Software Requirements Specification) document. The SRS describes the system the MG should be able to accomplish, also with potential changes the MG should cover.\\\\
-The MIS(Module Interface Specification) should be complete after MG is finished, which comtains actual implementation details of the modules that mentioned in MG.
+This Module Guide \sout{Document} is used to comprehensively describe the different modules in the Spiritual Jumper project, also provide a way to overlook the project design as a whole from conceptual perspective.\\\\
+The MG(Module \sout{Document} \rev{Guide}) is based on the previous SRS(Software Requirements Specification) document. The SRS describes the system the MG should be able to accomplish, also with potential changes the MG should cover.\\\\
+The MIS(Module Interface Specification) should be complete after MG is finished, which com-ntains actual implementation details of the modules that mentioned in MG.
 \subsection{Design Principle}
 In order to keep the project as robust and maintanable as we could, the N.L.E team is obligated to implement the following design principle: information hiding, low coupling and high cohesion.
 
@@ -186,9 +189,8 @@ not this module is implemented depends on the programming language
 selected.
 
 
-\subsection{M1: Hardware Hiding Modules (Pointing Devices, Keyboard, and Displays}
 
-\subsection{Hardware Hiding Modules (\mref{mHH})}
+\subsection{Hardware Hiding Modules }
 
 \begin{description}
 
@@ -212,28 +214,28 @@ selected.
 \item[Module 3]
 \item[Secrets:]How the user enters and saves their names, along with their high scores.
 \item[Services:]Creates a person object with two inputs, one being the score that the user had received, the other being the name they had added.
-\item[Implemented By:] person Module
+\item[Implemented By:] \sout{person} \rev{Person} Module
 \end{description}
 
 \begin{description}
 \item[Module 4]
 \item[Secrets:]How platforms are created, how they are moved.
 \item[Services:]Creates the game platforms through the use of a platform object with multiple input parameters dictation it's position and attributes.
-\item[Implemented By:] platform Module
+\item[Implemented By:] \sout{platform} \rev{Platform} Module
 \end{description}
 
 \begin{description}
 \item[Module 5]
 \item[Secrets:]How the monsters are created, how they move.
 \item[Services:]Creates the monsters within the game through the use of a monster object with many parameters within the constructor detailing its position and size. 
-\item[Implemented By:] monster Module
+\item[Implemented By:] \sout{monster} \rev{Monster} Module
 \end{description}
 
 \begin{description}
 \item[Module 6]
 \item[Secrets:]How the bullets are created, how they move around the game display. 
 \item[Services:]Creates the bullet objects with paramaeters detailing their initial location and size. Controls the movements of the bullets.
-\item[Implemented By:] bullet Module
+\item[Implemented By:] Bullet Module
 \end{description}
 
 \begin{description}
@@ -244,9 +246,16 @@ selected.
 \end{description}
 
 
-\subsubsection{Input Format Module}
 
 \subsection{Software Decision Module}
+\begin{description}
+\item[\rev{Secrets:}] \rev{The design decision based on mathematical theorems, physical facts, or programming considerations. The secrets of this module are described in the SRS.}
+\item[\rev{Services:}] Includes data structure and algorithms used in the system that
+  do not provide direct interaction with the user. 
+  % Changes in these modules are more likely to be motivated by a desire to
+  % improve performance than by externally imposed changes.
+\item[Implemented By:] --
+\end{description}
 
 \section{Traceability Matrix} \label{SecTM}
 
@@ -306,6 +315,7 @@ because they use modules from the lower levels.
 %\includegraphics[width=0.7\textwidth]{UsesHierarchy.png}
 \includegraphics{Thing.png}
 \caption{Use hierarchy among modules}
+\rev{The uses hierarchy listed above is read as such: where 1.. 7 are numbered states in a directed acyclic graph and all numbered states are followed by the prior numbered state. Hence 1 to 2 to 3...(where "to" implies the next state) and so forth. }
 \label{FigUH}
 \end{figure}
 

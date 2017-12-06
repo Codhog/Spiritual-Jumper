@@ -4,6 +4,6 @@ Problem Statement: Original problem statement, rev0.
 Design: Contains MG and MIS in rev0.
 DevelopmentPlan: Development plan in rev0
 TestPlan: Test plan in rev 0.
-SRS: Software requirement specification in rev0.
+RequirementDoc: Software requirement specification in rev0.
 Final Presentation: powerpoint for final presentation.
 

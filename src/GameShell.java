@@ -598,9 +598,7 @@ public class GameShell extends Applet implements KeyListener, MouseListener, Mou
 
                 //add new hiscore to end
                 //keep moving up the hiscore table until it belongs
-                
-                System.out.println(people);
-                
+                                
                 PrintWriter writer = new PrintWriter("scores.txt");
                 writer.print("");
                 writer.close();
@@ -1465,6 +1463,7 @@ public class GameShell extends Applet implements KeyListener, MouseListener, Mou
      */
     public void keyPressed(KeyEvent e) {
         switch (e.getKeyCode()) {
+        
             case 32: {
                 //space key
                 if (spaceCount == 0) {
@@ -1547,6 +1546,10 @@ public class GameShell extends Applet implements KeyListener, MouseListener, Mou
                 menuOn = true;
                 scoresOn = false;
                 gameOver = false;
+                ac.stop();
+                acFall.stop();
+                jungle.stop();
+                
                 break;
             }
 

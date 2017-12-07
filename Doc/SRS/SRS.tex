@@ -1,8 +1,15 @@
 \documentclass[12pt, titlepage]{article}
 
+\usepackage{fullpage}
+\usepackage[round]{natbib}
+\usepackage{multirow}
 \usepackage{booktabs}
 \usepackage{tabularx}
+\usepackage{graphicx}
+\usepackage{float}
 \usepackage{hyperref}
+\usepackage[normalem]{ulem}
+\usepackage[usenames, dvipsnames]{color}
 \hypersetup{
     colorlinks,
     citecolor=black,
@@ -11,6 +18,9 @@
     urlcolor=blue
 }
 \usepackage[round]{natbib}
+
+\definecolor{RevisionColour}{rgb}{0.0, 0.6, 0.3}
+\newcommand{\rev}[1]{\textcolor{RevisionColour}{#1}}
 
 \title{SE 3XA3: Software Requirements Specification\\Spiritual Jumper}
 
@@ -38,6 +48,7 @@
 \toprule {\bf Date} & {\bf Version} & {\bf Notes}\\
 \midrule
 October 6, 2017 & 0.0 & Draft of requirement document\\
+\rev{December 6, 2017} & \rev{1} & \rev{Draft of requirement document - Revision 1}\\
 \bottomrule
 \end{tabularx}
 \end{table}
@@ -54,7 +65,9 @@ template~\citep{RobertsonAndRobertson2012}.
 
 \subsection{The Purpose of the Project}
 
-The purpose of our project, to state it simply, is for all of our users to have fun. It is our top priority is to be able to modify Doodle Jump to make it more enjoyable to maximize the amount of people who will have the capability to play the game. It is at the best interests of N.L.E to ensure that the Spiritual Jumper can be accessible and enjoyable to as many people as possible. This includes people who have physical and/or mental disabilities as the group strongly believes that it is important that anyone can be able to enjoy games. Therefore it is key that the game is simple and very easy to play.
+\sout{The purpose of our project, to state it simply, is for all of our users to have fun. It is our top priority is to be able to modify Doodle Jump to make it more enjoyable to maximize the amount of people who will have the capability to play the game. It is at the best interests of N.L.E to ensure that the Spiritual Jumper can be accessible and enjoyable to as many people as possible. This includes people who have physical and/or mental disabilities as the group strongly believes that it is important that anyone can be able to enjoy games. Therefore it is key that the game is simple and very easy to play.}
+
+\rev{The purpose of our project, to state it simply, is for all of our users to have fun. It is our top priority is to be able to change Doodle Jump to make it more enjoyable to maximize the number of people who will have the capability to play the game. It is in the best interests of N.L.E to make sure that the Spiritual Jumper can be accessible and enjoyable to as many people as possible. This includes people who have physical and/or mental disabilities as the group strongly believes that it is important that anyone can be able to enjoy games. Therefore it is key that the game is simple and very easy to play.}
 
 \subsection{The Stakeholders}
 
@@ -90,6 +103,10 @@ Client - The people who the group is directly making the game for, and will revi
 
 Customer - Like the client, the people who the group is intending to make the game for, after it reaches a point where it can be presentable to a significant amount of people. In our case that would be the general population.
 
+\rev{Eclipse - The IDE which the project is being developed within.}
+
+\rev{}
+
 \subsection{Relevant Facts and Assumptions}
 
 There are over 1800 lines of code within the original source code that the group is creating Spiritual Jumper from. On top of that, there are many different images within the project. Due to this, it is a fair assumption that the code for the groups final product will have 2000+ lines of code with possible additions to the images in order to make the our product more discernible from the original. 
@@ -114,10 +131,54 @@ If the device disconnect from the internet, the game will go on.
 
 
 \subsection{Functional Requirements}
-1: The game can determine the score of player by how much they move up.
+\sout{1: The game can determine the score of player by how much they move up.
 2: The score will be automatically saved if it is top 10 score, all score will be saved if the game on the device is played less than 11 times.
 3: The game can terminate itself when player's character collide with obstacles.
-4; The items in the game will take effect and help players, for examples, the spring will bounce player 7 times higher than the regular bounce;  the rocket pack can boost player up and move horizontally swiftly for a period of time.
+4; The items in the game will take effect and help players, for examples, the spring will bounce player 7 times higher than the regular bounce;  the rocket pack can boost player up and move horizontally swiftly for a period of time.}\\
+
+\rev{The following is the revisioned functional requirements\\
+Requirement \#: FR1\\
+Description: Score is dependent on how high the character goes\\
+Rationale:It shall allow leaderboard functions work correctly and give a sense of pride and accomplishment to the users.\\
+Fit Criterion: Score shall only be related to the height of the character.\\
+Priority: High\
+History: December 4th, 2017\\\\
+Requirement \#: FR2\\
+Description:The leaderboard shall save the score higher than the scores store in the original leaderboard and sort them correctly\\
+Rationale:It enables leaderboard.\\
+Fit Criterion: .\\
+Priority: High\\
+History: December 4th, 2017\\\\
+Requirement \#: FR3\\
+Description: The User Shall be able to use left, right arrow key to move the character, space to make the first jump, mouse clicks to select options in menus\\
+Rationale:It would enable all user inputs.\\
+Fit Criterion: The input shall be responsive and precise.\\
+Priority: High\\
+History: December 4th, 2017\\\\
+Requirement \#: FR4\\
+Description: Correct music shall be played in the right time: when the game starts, the character falls, jungle mode starts.\\
+Rationale:It would enhance the gameplay and add more atmosphere to the game's theme.\\
+Fit Criterion: Music files should be in the right place to get reference from, also music content should be appropriate.\\
+Priority: High\\
+History: December 4th, 2017\\\\
+Requirement \#: FR5\\
+Description: Different platform should perform different functions: Green platform gives character regular jump range. Blue platform moves in a certain pattern, White platform demolish after character jump on it once, Brown demolish after character jump on it once and does not support jump.\\
+Rationale:It would enhance the gameplay and give users more challenge.\\
+Fit Criterion: Platform should be function correctly.\\
+Priority: High\\
+History: December 4th, 2017\\\\
+Requirement \#: FR6\\
+Description: Spring item shall make character jump a certain long distance.\\
+Rationale:It would enhance the gameplay and give users a sense of pride and accomplishment.\\
+Fit Criterion: Performance should be able to handle update of graphics.\\
+Priority: Medium\\
+History: December 4th, 2017\\\\
+Requirement \#: FR7\\
+Description: An outputwindow should pop up when the gameshell is executed.\\
+Rationale: User need the output window to navigate further actions.\\
+Fit Criterion: The window should be clearly visible for every group of users.\\
+Priority: Medium\\
+History: December 4th, 2017}\\\\
 
 \section{Non-Functional Requirements}
 
@@ -243,7 +304,7 @@ Ideas in the waiting room include creating a version of Spiritual Jumper which c
 
 \subsection{Ideas for Solutions}
 
-In order to make the game more accessible to people who don't have internet access, the game should be able to be played offline. An idea to make the game more competitive and entertaining, the group could upgrade the already existing leaderboard to allow users to leave their mark on it. 
+In order to make the game more accessible to people who don't have internet access, the game should be able to be played offline. An idea to make the game more competitive and entertaining, the group could upgrade the already existing leader board to allow users to leave their mark on it. 
 
 \bibliographystyle{plainnat}
 
@@ -259,4 +320,3 @@ To be updated if neccessary.
 No symbolic parameters used in this document
 
 \end{document}
-

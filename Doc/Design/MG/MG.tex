@@ -270,13 +270,14 @@ requirements and between the modules and the anticipated changes.
 \toprule
 \textbf{Req.} & \textbf{Modules}\\
 \midrule
-R1 & M1\\
-R2 & M2, M4\\
-R3 & M2, M5\\
-R4 & M2, M6\\
-R5 & M2, M7\\
-R6 & M1, M3\\
-R7 & M1, M2, M4, M5, M6, M7\\
+\sout{R1}\rev{FR1} & \sout{M1} \rev{M5}\\
+\sout{R2}\rev{FR2} & \sout{M2 M4}\rev{M5}\\
+\sout{R3}\rev{FR3} & \sout{M2 M5}\rev{M2, M3, M4}\\
+\sout{R4}\rev{FR4} & \sout{M2, M7}\rev{M2}\\
+\sout{R5}\rev{FR5} & \sout{M2, M7}\rev{M3}\\
+\sout{R6}\rev{FR6} & \sout{M1, M3}\rev{M3}\\
+\sout{R7}\rev{FR7} & \sout{M1, M2, M4, M5, M6, M7}\rev{M1}\\
+
 
 \bottomrule
 \end{tabular}
@@ -290,7 +291,11 @@ R7 & M1, M2, M4, M5, M6, M7\\
 \toprule
 \textbf{AC} & \textbf{Modules}\\
 \midrule
-AC1 & \ M1\\
+AC1 & \ \sout{M1}\rev{M2}\\
+\rev{AC2} & \rev{M1}\\
+\rev{AC3} & \rev{M2}\\
+\rev{AC4} & \rev{M3, M4}\\
+\rev{AC5} & \rev{M1, M3}\\
 \bottomrule
 \end{tabular}
 \caption{Trace Between Anticipated Changes and Modules}

@@ -1,0 +1,455 @@
+\documentclass[12pt, titlepage]{article}
+
+\usepackage{fullpage}
+\usepackage[round]{natbib}
+\usepackage{multirow}
+\usepackage{booktabs}
+\usepackage{tabularx}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{hyperref}
+\usepackage[normalem]{ulem}
+\usepackage[usenames, dvipsnames]{color}
+\hypersetup{
+    colorlinks,
+    citecolor=black,
+    filecolor=black,
+    linkcolor=red,
+    urlcolor=blue
+}
+
+\definecolor{RevisionColour}{rgb}{0.0, 0.6, 0.3}
+\newcommand{\rev}[1]{\textcolor{RevisionColour}{#1}}
+
+\usepackage[round]{natbib}
+
+\title{SE 3XA3: Test Plan\\Spiritual Jumper}
+
+\author{Team \rev{25} \sout{31}, N.L.E.
+		\\ Ruoyuan Liu, liur19
+		\\ Zihao Chen, chenz87
+		\\ Gundeep Kanwal, kanwalg
+}
+
+\date{\rev{December 6, 2017}}
+
+
+\begin{document}
+
+\maketitle
+
+\pagenumbering{roman}
+\tableofcontents
+\listoftables
+\listoffigures
+
+\begin{table}[bp]
+\caption{\bf Revision History}
+\begin{tabularx}{\textwidth}{p{3cm}p{2cm}X}
+\toprule {\bf Date} & {\bf Version} & {\bf Notes}\\
+\midrule
+\sout{Date 1} \rev{October 27, 2017} & \sout{1.0} \rev{0} & Test Plan created\\
+\rev{December 6, 2017} & \rev{1.0} & \rev{Test Plan created - Revision 1}\\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\newpage
+
+\pagenumbering{arabic}
+
+This document is a specific test plan based on the project "Spiritual Jumper" by N.L.E team.
+
+\section{General Information}
+
+\subsection{Purpose}
+\sout{This document is for outlining all the testing procedures of the Spiritual Jumper project, and verification if the project meets the functional and non-functional requirements. Readers of this document should be able to develop a comprehensive understanding about the program testing process.}
+
+\rev{The purpose of the project is to manufacture a game that is easy to pick up and play. We wish to create a simple game with basic inputs while providing the user with an enjoyable and addicting game experience.}
+
+\subsection{Scope}
+
+\sout{This document will list all the technical and conceptual aspect of the program testing procedure, including testing tools , team management, and specific testing process etc.. It will also give out a schedule planned for testing and terminologies and symbols that is used in this document.}
+
+\rev{In terms of the scope for the project, the aim is to have a basic finished product of our implementation of our game by the end of the semester which showcases the ideas which our group wished to implement from the original source code.}
+
+\subsection{Acronyms, Abbreviations, and Symbols}
+
+\begin{table}[hbp]
+\caption{\textbf{Table of Abbreviations}} \label{Table}
+
+\begin{tabularx}{\textwidth}{p{3cm}X}
+\toprule
+\textbf{Abbreviation} & \textbf{Definition} \\
+\midrule
+GUI & Graphic user interface\\
+UI & User interface\\
+PoC & Point of concept\\
+
+\bottomrule
+\end{tabularx}
+
+\end{table}
+
+\begin{table}[!htbp]
+\caption{\textbf{Table of Definitions}} \label{Table}
+
+\begin{tabularx}{\textwidth}{p{3cm}X}
+\toprule
+\textbf{Term} & \textbf{Definition}\\
+\midrule
+Highest Score Board & A function in the game which users can store and review their highest score.\\
+Jungle mode & A game mode to which the user can change, it will activate new background and music for the game\\
+Menu State & The state when the game is in menu.\\
+Gameplay State & The state that the game is running.\\
+\bottomrule
+\end{tabularx}
+
+\end{table}	
+
+\subsection{Overview of Document}
+ There are 6 main parts in the documentation.\\\\
+  1. Overview of testing environment, tools, schedule and team coordination.\\
+  2. Systematic testing description based on functional and non-functional requirements.\\
+  3. Testing about functions based on PoC.\\
+  4. Comparison to the original implementation.\\
+  5. Testing plan about internal functions and output files.\\
+  6. Appendix of symbolic parameters and other additional possible objectives of this project.\\
+\section{Plan}
+	
+\subsection{Software Description}
+
+Spiritual Jumper is a game which was created in Java. It is based on the game doodle jumper. It takes keyboard and mouse inputs and it outputs the game's graphics which are displayed, along with the state of the game. The mouse input is used to let the user start the game, or to see the high scores. It is also with the keyboard to direct the location of where the user wishes to shoot a projectile. The keyboard input will let the user move side to side, jump and shoot. The functions that are to be tested are the mousePressed, keyPressed, readScores, updateMonster, move, checkDoodleGameOver, Platform, and run function. The "mousePressed" function handles the user input created by the mouse. The "keyPressed" function handles the user input created by the keyboard. The "readScores" function handles the highscores for the game. The "updateMonster" function handles with the creation and movement of the monster. The "move" function handles with the movements of the doodle which the user controls. The "checkDoodleGameOver" function is used to end the game when a user loses. The "Platform" function handles the construction of the platforms used within the game. The "run" function is used to keep the game running.
+
+\subsection{Test Team}
+
+The test team for Spiritual Jumper will be the memebers of Group 25, Gundeep Kanwal,Ruoyuan Liu and Zihao Chen. 
+
+\subsection{Automated Testing Approach}
+
+In terms of the automated testing approach, Group 25 will be using JUnit. This was decided as all group members have prior experience using JUnit, and have found it easy to use when working with java. The group plans on using JUnit for testing the "readScores", "keyPressed", "mousePressed" and "checkDoodleGameOver" functions in order to ensure their outputs match up with the expected outputs given certain inputs. 
+
+\subsection{Testing Tools}
+
+As previously stated, JUnit will be used. 
+
+\subsection{Testing Schedule}
+		
+As indicated in the teams gantt chart, the testing is scheduled to be completed before the rev0 demonstration.
+
+\section{System Test Description}
+	
+\subsection{Tests for Functional Requirements}
+
+\subsubsection{Area of Testing1}
+		
+\paragraph{User Input Testing}
+
+\begin{enumerate}
+
+\item{Mouse Testing\\}
+
+Type: Dynamic
+					
+Initial State: Active Menu State
+					
+Input: Mouse Location
+					
+Output: Co-ordinates of the Mouse Location
+					
+How test will be performed: The game will begin in the Active Menu State. The mouse will be moved to the a point on the menu display to a location of which the co-ordinates are known. The location of the mouse and the co-ordinates are compared to test the accuracy of the mouse input. 
+					
+\item{Keyboard Testing\\}
+
+Type: Functional
+					
+Initial State: Active Game State
+					
+Input: Keyboard Input
+					
+Output: Movement of the player doodle
+					
+How test will be performed: The keyboard will be used within the game state to move the doodle a certain way. If the keyboard inputs cause the movement of the doodle to match with the expected movements, the keyboard inputs are validated.
+
+\end{enumerate}
+
+\subsubsection{Area of Testing2}
+		
+\paragraph{Menu and Score Testing}
+
+\begin{enumerate}
+
+\item{Menu to Game Testing\\}
+
+Type: Functional
+					
+Initial State: Active Menu State
+					
+Input: Mouse Input
+					
+Output: State Change to Gameplay State.
+					
+How test will be performed: The game will begin in the Active Menu State, and the menu display will be used to navigate the mouse to the play button. The mouse will hover over the play button, modifying the menu display to include a red circle around the play button, and then when the mouse input clicks on the play button, the game will change to the Gameplay State. 
+					
+\item{Menu to Scores Testing\\}
+
+Type: Functional
+					
+Initial State: Active Menu State
+					
+Input: Mouse Input
+					
+Output: State Change to Scores State.
+					
+How test will be performed: The game will begin in the Active Menu State, and the menu display will be used to navigate the mouse to the scores button. The mouse will hover over the scores button, modifying the menu display to include a red circle around the scores button, and then when the mouse input clicks on the scores button, the game will change to the scores State. 
+
+\item{Score Testing\\}
+
+Type: Dynamic
+					
+Initial State: Active Gameplay State
+					
+Input: Score Input
+					
+Output: Score Board
+					
+How test will be performed: The game will end with a user reaching a high score. The user then proceeds to enter their score along with their name which is added to the scoreboard in its correct location. If the score is added to the correct position, the scoreboard is validated.
+
+\end{enumerate}
+
+\subsubsection{Area of Testing3}
+		
+\paragraph{Game Testing}
+
+\begin{enumerate}
+
+\item{Run Testing\\}
+
+Type: Functional
+					
+Initial State: Active Gameplay State
+					
+Input: Gameplay State
+					
+Output: No Change to state of the Game
+					
+How test will be performed: The game will start in the Gameplay state as the user plays the game. The user will proceed to play the game. The game must not end and must remain in the Gameplay state when the user does not meet any of the conditions required for loseing the game. This ensures that the game is running correctly. The functions of different platforms and items will be tested during the run testing.
+					
+					
+\item{End Testing\\}
+
+Type: Functional
+					
+Initial State: Active Gameplay State
+					
+Input: Gameplay State
+					
+Output: State Change to Menu State
+					
+How test will be performed: The game will start in the Gameplay state as the user plays the game. The user will proceed to play the game until they meet on of the conditions required to lose the game. The Gameplay state must conclude and tranfer states to the Menu State. 
+
+\item{Reset Testing\\}
+
+Type: Functional
+					
+Initial State: Active Gameplay State
+					
+Input: State Change to Menu State
+					
+Output: Game variables are reset
+					
+How test will be performed: The game will start in the Gameplay state as the user plays the game. The user will proceed to play the game until they meet on of the conditions required to lose the game. The variables used for the game must be reset to their initial values in order for the game to be able to be played again from the starting position.
+
+\item{Generating Platform Testing\\}
+
+Type: Functional
+					
+Initial State: Active Gameplay State
+					
+Input: Start of the Gameplay State
+					
+Output: Platforms which are displayed
+					
+How test will be performed: The game will start in the Gameplay state as the user plays the game. Platforms which are used for the game must be displayed randomly in a way that the user can use to play the game, and must be continued to be displayed as the user moves up the game as they move from the START\_LEVEL onwards.
+\end{enumerate}
+...
+
+\subsection{Tests for Nonfunctional Requirements}
+
+\subsubsection{Area of Testing1}
+		
+\paragraph{General Test}
+
+\begin{enumerate}
+
+\item{Usability Testing\\}
+
+Type: Manual
+					
+Initial State: Active Gameplay State
+					
+Input/Condition: Mouse Movements and Keyboard Inputs
+					
+Output/Result: None
+					
+How test will be performed: \sout{The game will be played and checked for how easy it was to play the game; How quick someone can get a hang of the game. This will be done by having group members play the game through while envisioning themselves as someone who does not know how to play the game.}
+\rev{The developers will allow various members of the public to play the game, and will rank how easy it was the use the game out of 10.}
+					
+
+\item{Legal Testing\\}
+
+Type: Manual
+					
+Initial State: \rev{N/A} \sout{Active Gameplay State}
+					
+Input/Condition: \rev{N/A} \sout{Mouse Movements and Keyboard Inputs}
+					
+Output/Result: None
+					
+How test will be performed: \sout{The game will be played and checked to see if it has any legal issues which might be encountered.} \rev{The developers will look into all the legal requirements that the game must follow and ensure that the game does not break any of the regulations that must be followed.}
+
+\item{Portability Testing\\}
+
+Type: Manual
+					
+Initial State: Active Menu State
+					
+Input/Condition: Mouse Movements and Keyboard Inputs
+					
+Output/Result: None
+					
+How test will be performed: The game will be opened on different operating systems to prove it's ability to be portable. 
+
+\item{\rev{Cultural and Political Testing:}\
+
+\rev{Type: Manual}
+					
+\rev{Initial State: Active Menu State}
+					
+\rev{Input/Condition: N/A}
+					
+\rev{Output/Result: N/A}
+					
+\rev{How test will be performed: The developers will ensure that there are no aspects within the game that may be offensive to different cultures, and that the game will be non-partisan.}
+
+\item{\rev{Security Requirements Testing}:}\
+
+\rev{Type: Manual}
+					
+\rev{Initial State: Active Menu State}
+					
+\rev{Input/Condition: All User Inputs}
+					
+\rev{Output/Result: N/A}
+					
+\rev{How test will be performed: The developers will move through the different states of the game, attempting to break the game through the use of all the user inputs}
+
+\end{enumerate}
+
+\subsection{Traceability Between Test Cases and Requirements}
+
+\section{Tests for Proof of Concept}
+
+\subsection{Basic Gameplay}
+		
+\paragraph{Basic Concept Test}
+
+\begin{enumerate}
+
+\item{Game Start\\}
+
+Type: Functional, Manual
+					
+Initial State: Home Menu
+					
+Input: Mouse click on "Play Game"
+					
+Output: The program runs successfully.
+					
+How test will be performed: Tester will mouse click the option, "Play Game" from home menu and observe if the program runs successfully.
+					
+\item{Game Pause\\}
+
+Type: Functional, Dynamic, Manual
+					
+Initial State: Game On-going
+					
+Input: Mouse click on the "pause" button
+					
+Output: The program will pause the process and display the pause menu.
+					
+How test will be performed: Tester will mouse click the pause button during an on-going game and observe if the program pause its process and display pause menu.
+
+\item{Select Mode\\}
+
+Type: Functional, Static, Manual
+					
+Initial State: Home Menu
+					
+Input:Press F3 to enter "Jungle mode"
+					
+Output: The program will read the input and directed to the appointed state.
+					
+How test will be performed: Tester will click F3 on the keyboard and enter the game and observe if the program is in "Jungle Mode".
+
+
+
+\end{enumerate}
+
+\subsection{Non-gameplay function test}
+
+\begin{enumerate}
+
+\item{Leaderboard\\}
+
+Type: Functional, Static, Manual
+					
+Initial State: Home Menu
+					
+Input: Mouse click on "Leaderboard"
+					
+Output: The program will read the input and display the list of history top-10 score and name.
+					
+How test will be performed: Tester will mouse click "Leaderboard" from the home menu and observe if the program display the list of history top-10 score and name.
+
+\end{enumerate}
+...
+
+	
+\section{Comparison to Existing Implementation}	
+
+When comparing our implementation of the original source code, there are a number of significant difference between Spiritual Jumper and Doodle Jump. However, the majority of the methods and functions from the original are being used with the copy. Due to their, the requirements are similar. Despite this, some notable difference include the difference in music between the two games and our complete implementation of the scoreboard. 
+\rev{The old implementation is mostly tested manually and the new one is mostly tested manually too.  So the testing method will be similar between new and old implementation.}
+				
+\section{Unit Testing Plan}
+The original game of Spiritual Jumper has no built-in testing framework to it and the N.L.E. team will manually write most of the unit testing drivers. Stubs will not be needed during unit testing process. However, adding or disabling some function will be used during testing process in order to reduce the uncertainty of the game itself.
+\subsection{Unit testing of internal functions}
+Given the source code of this project is relatively huge, to completely cover all the internal functions would be unrealistic for N.L.E. team. We decided to test most of the crucial parts that have direct or great impact on the game function only.\\
+Platform Generation Functions\\
+The platform generation in this game is the most important part, as it would directly impact the difficulty and playability. That algorithm in the original program would sometimes cause the game unplayable because the character jumped too short compare to the next platform the game generates. In this case, a boundary for platform generation will be introduced to the program and the verification of this function could be fairly easier.\\
+Keyboard Input Functions\\
+The keyboard input function the program uses is a built-in function of Java, which provides the verification of the function.\\
+Monster Functions\\
+The hitbox of the monster in the game is huge and ambiguous. Given that the metrics for the monster can be controlled and  constrained easily, the unit testing would mainly be in game. For instance, generating monsters in a specific location and testing the hitbox with continuously generate new characters jump over it or shoot it.\\
+
+\subsection{Unit testing of output files}		
+The only output file the program generates is the score.txt, which contains data of user's highest score. This function can be easily unit tested by verifying the content of the .txt file after we input a manually written file that would write to the function.
+\bibliographystyle{plainnat}
+
+\bibliography{SRS}
+
+\newpage
+
+\section{Appendix}
+
+This section will be revisited once addtional information is needed.
+
+\subsection{Symbolic Parameters}
+
+The definition of the test cases will call for SYMBOLIC\_CONSTANTS.
+Their values are defined in this section for easy maintenance.
+
+START\_LEVEL = 0.
+
+\end{document}
+

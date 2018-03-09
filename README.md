@@ -1,15 +1,11 @@
-Project Name
+Game Name: Spiritual Jumper
 
-Team Name: Next Level Engineering
-
-Team Members: Ruoyuan Liu, Gundeep Kanwel, Zihao Chen
-
-This project is a reimplementation of an classic game doodle jump.
+Authors: Zihao Chen, Ruoyuan Liu, Gundeep Kanwel
 
 The folders and files for this project are as follows:
 
-Doc - Documents for the project
+Doc - Documents for the software
 
 Spiritual_Jumper - Implementation
 
-ProjectSchedule - Gantt chart for team work distribution
+Gantt chart - Team work distribution
